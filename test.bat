@@ -1,0 +1,1 @@
+windmill firefox http://zc.qq.com/ test=AutoQQRegister.py ssl
