@@ -21,23 +21,23 @@ def get_code_info(client):
     print 'type(asciiUrl): ', type(asciiUrl)
     
     code = 'bbbb'
-    acachInfo=win32inet.GetUrlCacheEntryInfo(asciiUrl)
-    if cachInfo:
-        pathSrc=cachInfo['LocalFileName']
-        print 'pathSrc:', pathSrc
-        srcPathInfo = pathSrc.split('\\')
-        srcName = srcPathInfo[-1]
-        print 'srcName:', srcName
-        pathinfo=codeImgUrl.split('/')
-        filename=pathinfo[-1]
-        if filename[-4:-1] != srcName[-4:-1]:
-            filename = srcName
-        pathDest = os.path.join(self.__dir,filename)
-        if os.path.isfile(pathDest): 
-            os.remove(pathDest)
-        win32file.CopyFile(pathSrc,pathDest,True)
-    else:
-        code = 'aaaa'
+##    acachInfo=win32inet.GetUrlCacheEntryInfo(asciiUrl)
+##    if cachInfo:
+##        pathSrc=cachInfo['LocalFileName']
+##        print 'pathSrc:', pathSrc
+##        srcPathInfo = pathSrc.split('\\')
+##        srcName = srcPathInfo[-1]
+##        print 'srcName:', srcName
+##        pathinfo=codeImgUrl.split('/')
+##        filename=pathinfo[-1]
+##        if filename[-4:-1] != srcName[-4:-1]:
+##            filename = srcName
+##        pathDest = os.path.join(self.__dir,filename)
+##        if os.path.isfile(pathDest): 
+##            os.remove(pathDest)
+##        win32file.CopyFile(pathSrc,pathDest,True)
+##    else:
+##        code = 'aaaa'
 
     return code
 
