@@ -1,6 +1,11 @@
 # coding=GBK
+import sys
+sys.path.append('C:\Python27\Lib\site-packages\pytesser')
+
 import win32com.client, win32inet, win32file
 import time, os
+import Image,ImageEnhance,ImageFilter
+from pytesser import *
 
 def set_element_value(ie, elementID, value):
     thisValue = ''
@@ -72,6 +77,27 @@ def get_node_by_attr(Nodes,nodeattr,nodeval):
             return node  
     return None  
 
+def get_code_str_from_image(image_name):
+    names = image_name.split('.')
+    processImagePath = names[0] + '_processed.' + names[1]
+    print processImagePath
+    im = Image.open(image_name)
+##    im = im.filter(ImageFilter.MedianFilter())
+##    enhancer = ImageEnhance.Contrast(im)
+##    im = enhancer.enhance(2)
+##    im = im.convert('1')
+##    im.save(processImagePath)
+
+    codestr = image_to_string(im)
+    print 'codestr:', codestr
+##    codestr = image_file_to_string(processImagePath)
+##    codestr = image_file_to_string('C:\\temp\\fnord.tif')
+##    img = Image.open('C:\\temp\\phototest.tif')
+##    text = image_to_string(img)
+##    print 'text: ', text
+    return 'aabb'
+
+
 def get_code_str(ie6):
     body = get_body(ie6)
     nodesImg = get_nodes(body, "img")  
@@ -93,6 +119,7 @@ def get_code_str(ie6):
         if os.path.isfile(pathDest): 
             os.remove(pathDest)
         win32file.CopyFile(pathSrc,pathDest,True)
+        code = get_code_str_from_image(pathDest)
     else:
         code = 'aaaa'
     print code
@@ -106,63 +133,63 @@ def get_qq_num(ie6):
     nodesInput = get_nodes(body, "input")
 
     
-    node = get_node_by_attr(nodesInput, 'id', 'nick')
-    node.click()
-    node.focus()
-    set_node_value(node, 'pylon2888')
-
-    node = get_node_by_attr(nodesInput, 'id', 'password')
-    node.click()
-    node.focus()
-    set_node_value(node, '123456qq')
-
-    node = get_node_by_attr(nodesInput, 'id', 'password_again')
-    node.click()
-    node.focus()
-    set_node_value(node, '123456qq')
-
-    nodesA = get_nodes(body, "a")
-    node = get_node_by_attr(nodesA, 'id', 'birthday_type_value')
-    node.click()
-    node.focus()
-    nodesLi = get_nodes(body, "li")
-    node = get_node_by_attr(nodesLi, 'id', 'birthday_0')
-    node.click()
-    node.focus()
-    wait_ie(ie6)
-
-    node = get_node_by_attr(nodesInput, 'id', 'year_value')
-    node.click()
-    node.focus()
-    time.sleep(humanInterval)
-    wait_ie(ie6)
-    node = get_node_by_attr(nodesLi, 'id', 'year_0')
-    node.click()
-    node.focus()
-    time.sleep(humanInterval)
-    wait_ie(ie6)
-    
-    node = get_node_by_attr(nodesInput, 'id', 'month_value')
-    node.click()
-    node.focus()
-    time.sleep(humanInterval)
-    wait_ie(ie6)
-    node = get_node_by_attr(nodesLi, 'id', 'month_0')
-    node.click()
-    node.focus()
-    time.sleep(humanInterval)
-    wait_ie(ie6)
-
-    node = get_node_by_attr(nodesInput, 'id', 'day_value')
-    node.click()
-    node.focus()
-    time.sleep(humanInterval)
-    wait_ie(ie6)
-    node = get_node_by_attr(nodesLi, 'id', 'day_0')
-    node.click()
-    node.focus()
-    time.sleep(humanInterval)
-    wait_ie(ie6)
+##    node = get_node_by_attr(nodesInput, 'id', 'nick')
+##    node.click()
+##    node.focus()
+##    set_node_value(node, 'pylon2888')
+##
+##    node = get_node_by_attr(nodesInput, 'id', 'password')
+##    node.click()
+##    node.focus()
+##    set_node_value(node, '123456qq')
+##
+##    node = get_node_by_attr(nodesInput, 'id', 'password_again')
+##    node.click()
+##    node.focus()
+##    set_node_value(node, '123456qq')
+##
+##    nodesA = get_nodes(body, "a")
+##    node = get_node_by_attr(nodesA, 'id', 'birthday_type_value')
+##    node.click()
+##    node.focus()
+##    nodesLi = get_nodes(body, "li")
+##    node = get_node_by_attr(nodesLi, 'id', 'birthday_0')
+##    node.click()
+##    node.focus()
+##    wait_ie(ie6)
+##
+##    node = get_node_by_attr(nodesInput, 'id', 'year_value')
+##    node.click()
+##    node.focus()
+##    time.sleep(humanInterval)
+##    wait_ie(ie6)
+##    node = get_node_by_attr(nodesLi, 'id', 'year_0')
+##    node.click()
+##    node.focus()
+##    time.sleep(humanInterval)
+##    wait_ie(ie6)
+##    
+##    node = get_node_by_attr(nodesInput, 'id', 'month_value')
+##    node.click()
+##    node.focus()
+##    time.sleep(humanInterval)
+##    wait_ie(ie6)
+##    node = get_node_by_attr(nodesLi, 'id', 'month_0')
+##    node.click()
+##    node.focus()
+##    time.sleep(humanInterval)
+##    wait_ie(ie6)
+##
+##    node = get_node_by_attr(nodesInput, 'id', 'day_value')
+##    node.click()
+##    node.focus()
+##    time.sleep(humanInterval)
+##    wait_ie(ie6)
+##    node = get_node_by_attr(nodesLi, 'id', 'day_0')
+##    node.click()
+##    node.focus()
+##    time.sleep(humanInterval)
+##    wait_ie(ie6)
 
     codeStr = get_code_str(ie6);
     node = get_node_by_attr(nodesInput, 'id', 'code')
