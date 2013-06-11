@@ -16,6 +16,7 @@ beautifulsoup4-4.2.1.tar.gz
 Windmil.rar
 pyOpenSSL-0.13.winxp32-py2.7.exe
 windmill\server\sslcerts\master.crt
+PIL-1.1.7.win32-py2.7.exe
 =================================================================================
 
 AutoVerify
