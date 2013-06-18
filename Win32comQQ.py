@@ -6,6 +6,7 @@ import win32com.client, win32inet, win32file
 import time, os
 import Image,ImageEnhance,ImageFilter
 from pytesser import *
+from ImageCodeVerifier import *
 
 def set_element_value(ie, elementID, value):
     thisValue = ''
@@ -77,28 +78,11 @@ def get_node_by_attr(Nodes,nodeattr,nodeval):
             return node  
     return None  
 
-def get_code_str_from_image(image_name):
-    names = image_name.split('.')
-    processImagePath = names[0] + '_processed.' + names[1]
-    print processImagePath
-    im = Image.open(image_name)
-##    im = im.filter(ImageFilter.MedianFilter())
-##    enhancer = ImageEnhance.Contrast(im)
-##    im = enhancer.enhance(2)
-##    im = im.convert('1')
-##    im.save(processImagePath)
-
-    codestr = image_to_string(im)
-    print 'codestr:', codestr
-##    codestr = image_file_to_string(processImagePath)
-##    codestr = image_file_to_string('C:\\temp\\fnord.tif')
-##    img = Image.open('C:\\temp\\phototest.tif')
-##    text = image_to_string(img)
-##    print 'text: ', text
-    return 'aabb'
+def get_code_str_from_image(image_name, imgVerifior):
+    return imgVerifior.getCodeFromImagePath(image_name, 3004)
 
 
-def get_code_str(ie6):
+def get_code_str(ie6, imgVerifior):
     body = get_body(ie6)
     nodesImg = get_nodes(body, "img")  
     codeImgElement = get_node_by_attr(nodesImg, 'id', 'code_img')
@@ -119,102 +103,91 @@ def get_code_str(ie6):
         if os.path.isfile(pathDest): 
             os.remove(pathDest)
         win32file.CopyFile(pathSrc,pathDest,True)
-        code = get_code_str_from_image(pathDest)
+        code = get_code_str_from_image(pathDest, imgVerifior)
     else:
         code = 'aaaa'
     print code
 
     return code
 
-def get_qq_num(ie6):
+def get_qq_num(ie6, imgVerifior):
     humanInterval = 0.2
 
     body = get_body(ie6)
     nodesInput = get_nodes(body, "input")
 
     
-##    node = get_node_by_attr(nodesInput, 'id', 'nick')
-##    node.click()
-##    node.focus()
-##    set_node_value(node, 'pylon2888')
-##
-##    node = get_node_by_attr(nodesInput, 'id', 'password')
-##    node.click()
-##    node.focus()
-##    set_node_value(node, '123456qq')
-##
-##    node = get_node_by_attr(nodesInput, 'id', 'password_again')
-##    node.click()
-##    node.focus()
-##    set_node_value(node, '123456qq')
-##
-##    nodesA = get_nodes(body, "a")
-##    node = get_node_by_attr(nodesA, 'id', 'birthday_type_value')
-##    node.click()
-##    node.focus()
-##    nodesLi = get_nodes(body, "li")
-##    node = get_node_by_attr(nodesLi, 'id', 'birthday_0')
-##    node.click()
-##    node.focus()
-##    wait_ie(ie6)
-##
-##    node = get_node_by_attr(nodesInput, 'id', 'year_value')
-##    node.click()
-##    node.focus()
-##    time.sleep(humanInterval)
-##    wait_ie(ie6)
-##    node = get_node_by_attr(nodesLi, 'id', 'year_0')
-##    node.click()
-##    node.focus()
-##    time.sleep(humanInterval)
-##    wait_ie(ie6)
-##    
-##    node = get_node_by_attr(nodesInput, 'id', 'month_value')
-##    node.click()
-##    node.focus()
-##    time.sleep(humanInterval)
-##    wait_ie(ie6)
-##    node = get_node_by_attr(nodesLi, 'id', 'month_0')
-##    node.click()
-##    node.focus()
-##    time.sleep(humanInterval)
-##    wait_ie(ie6)
-##
-##    node = get_node_by_attr(nodesInput, 'id', 'day_value')
-##    node.click()
-##    node.focus()
-##    time.sleep(humanInterval)
-##    wait_ie(ie6)
-##    node = get_node_by_attr(nodesLi, 'id', 'day_0')
-##    node.click()
-##    node.focus()
-##    time.sleep(humanInterval)
-##    wait_ie(ie6)
-
-    codeStr = get_code_str(ie6);
-    node = get_node_by_attr(nodesInput, 'id', 'code')
+    node = get_node_by_attr(nodesInput, 'id', 'nick')
     node.click()
     node.focus()
-    set_node_value(node, codeStr)
+    set_node_value(node, 'pylon2888')
+
+    node = get_node_by_attr(nodesInput, 'id', 'password')
+    node.click()
+    node.focus()
+    set_node_value(node, '123456qq')
+
+    node = get_node_by_attr(nodesInput, 'id', 'password_again')
+    node.click()
+    node.focus()
+    set_node_value(node, '123456qq')
+
+    nodesA = get_nodes(body, "a")
+    node = get_node_by_attr(nodesA, 'id', 'birthday_type_value')
+    node.click()
+    node.focus()
+    nodesLi = get_nodes(body, "li")
+    node = get_node_by_attr(nodesLi, 'id', 'birthday_0')
+    node.click()
+    node.focus()
+    wait_ie(ie6)
+
+    node = get_node_by_attr(nodesInput, 'id', 'year_value')
+    node.click()
+    node.focus()
     time.sleep(humanInterval)
+    wait_ie(ie6)
+    node = get_node_by_attr(nodesLi, 'id', 'year_0')
+    node.click()
+    node.focus()
+    time.sleep(humanInterval)
+    wait_ie(ie6)
+    
+    node = get_node_by_attr(nodesInput, 'id', 'month_value')
+    node.click()
+    node.focus()
+    time.sleep(humanInterval)
+    wait_ie(ie6)
+    node = get_node_by_attr(nodesLi, 'id', 'month_0')
+    node.click()
+    node.focus()
+    time.sleep(humanInterval)
+    wait_ie(ie6)
+
+    node = get_node_by_attr(nodesInput, 'id', 'day_value')
+    node.click()
+    node.focus()
+    time.sleep(humanInterval)
+    wait_ie(ie6)
+    node = get_node_by_attr(nodesLi, 'id', 'day_0')
+    node.click()
+    node.focus()
+    time.sleep(humanInterval)
+    wait_ie(ie6)
+
+    node = get_node_by_attr(nodesInput, 'id', 'code')
+    if node!=None:
+        codeStr = get_code_str(ie6, imgVerifior);
+        node.click()
+        node.focus()
+        set_node_value(node, codeStr)
+        time.sleep(humanInterval)
 
 
 
     node = get_node_by_attr(nodesInput, 'id', 'submit')
     node.click()
-##    node.focus()
-##    document.getElementById("submit").click()
-    #IE調用
-    #以上document就是頁面打開後面DOM對象，因爲頁面裏的javascript方法是在window命名空間,
-    #所以如果要調用js, 可以用 document.parentWindow.doSomeThing(); 這樣來調用.
-    #bbb = document.forms[1].submit()
-    #print 'bbb: ', bbb
-    #aaa = document.parentWindow.index.submit()
-    #print 'aaa: ', aaa
-    #print "num form: ", len(document.forms)
-##    help(document.forms[1])
-##    print 'type(document.forms[0]): ', type(document.forms[0])
-##    print 'type(document.forms[1]): ', type(document.forms[1])
+
     time.sleep(humanInterval)
     print 'after click'
 
@@ -223,19 +196,10 @@ def get_qq_num(ie6):
         time.sleep(1)
     print 'after wait'
 
+    if ie6.LocationURL!="http://zc.qq.com/chs/decimal_ok.html":
+        imgVerifior.reportError()
 
-##    while 1:    
-##        state = ie6.ReadyState    
-##        print state
-##        print ie6.LocationURL
-##        if state == 4:
-##            break
-####        if state ==4 and str(ie.LocationURL) == "http://home.cnblogs.com/":    
-####            break
-##        time.sleep(1)
-    #print "登陆成功" 
-    #print "你的昵称是："
-
+    print ie6.LocationURL
 
 
 
@@ -246,4 +210,7 @@ if __name__=='__main__':
     ie6.Visible=1    
     wait_ie(ie6)
 
-    get_qq_num(ie6)
+    imgVerifior = ImageCodeVerifier("pylliang", "qazwsx")
+    imgVerifior.login()
+    
+    get_qq_num(ie6, imgVerifior)
