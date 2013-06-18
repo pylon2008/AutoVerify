@@ -1,7 +1,8 @@
-# coding=GBK
+# coding=utf-8
 
 import win32com.client
 import time, os
+import logging  
 
 def set_element_value(ie, elementID, value):
     thisValue = ''
@@ -91,8 +92,8 @@ def get_next_page_node(ie6):
             if attrHref!=None and node.childNodes.length==1:
                 childNode = node.childNodes[0]
                 if childNode!=None:
-                    if childNode.getAdjacentText("afterBegin")==u"ÏÂÒ»Ò³" and \
-                       childNode.getAdjacentText("beforeEnd")==u"ÏÂÒ»Ò³":
+                    if childNode.getAdjacentText("afterBegin")==u"ä¸‹ä¸€é¡µ" and \
+                       childNode.getAdjacentText("beforeEnd")==u"ä¸‹ä¸€é¡µ":
                         return node
     return None
 
@@ -118,6 +119,9 @@ class fangInfo(object):
 
     def set_title(self, title):
         self.title = title
+
+    def set_url(self, url):
+        self.url = url
 
     def set_price(self, price):
         self.price = price
@@ -150,15 +154,16 @@ class fangInfo(object):
         strInfo = u''
         strInfo = strInfo \
                   + u"Title: " + self.title + u"\r\n" \
-                  + u"×â½ğ¼Û¸ñ: " + self.price + u"\r\n" \
-                  + u"»§ĞÍÃæ»ı: " + self.area + u"\r\n" \
-                  + u"·¿Îİ¸Å¿ö: " + self.houseInfo + u"\r\n" \
-                  + u"ËùÔÚÂ¥²ã: " + self.floor + u"\r\n" \
-                  + u"Ğ¡ÇøÃû³Æ: " + self.xiaoqu + u"\r\n" \
-                  + u"ËùÊôÇøÓò: " + self.quyu + u"\r\n" \
-                  + u"Ğ¡ÇøµØÖ·: " + self.addr + u"\r\n" \
-                  + u"ÔÚÏßÁªÏµ: " + self.contactor + u"\r\n" \
-                  + u"ÁªÏµ·½Ê½: " + self.phone + u"\r\n" \
+                  + u"ç§Ÿé‡‘ä»·æ ¼: " + self.price + u"\r\n" \
+                  + u"æˆ·å‹é¢ç§¯: " + self.area + u"\r\n" \
+                  + u"æˆ¿å±‹æ¦‚å†µ: " + self.houseInfo + u"\r\n" \
+                  + u"æ‰€åœ¨æ¥¼å±‚: " + self.floor + u"\r\n" \
+                  + u"å°åŒºåç§°: " + self.xiaoqu + u"\r\n" \
+                  + u"æ‰€å±åŒºåŸŸ: " + self.quyu + u"\r\n" \
+                  + u"å°åŒºåœ°å€: " + self.addr + u"\r\n" \
+                  + u"åœ¨çº¿è”ç³»: " + self.contactor + u"\r\n" \
+                  + u"è”ç³»æ–¹å¼: " + self.phone + u"\r\n" \
+                  + u"URL: " + self.url + u"\r\n" \
 
 
                   
@@ -183,6 +188,7 @@ def get_detail_info(ieSub, url):
     nodeTitleName = get_node_by_class_name(nodesHl, u"title-name")
     title = nodeTitleName.getAdjacentText("afterBegin")
     fang.set_title( title )
+    fang.set_url(url)
     print title
     print url
 
@@ -245,8 +251,11 @@ def get_info(ieSub, rootNode):
     for node in nodesA:
         if node.className==u"list-title":
             newUrl = node.getAttribute("href")
-            info = get_detail_info(ieSub, newUrl)
-            infoSet.append(info)
+            try:
+                info = get_detail_info(ieSub, newUrl)
+                infoSet.append(info)
+            except:
+                logging.info(newUrl)
     return infoSet
              
     
@@ -259,15 +268,23 @@ def get_fang_info(ieMain, ieSub):
         infoSet = infoSet + get_info(ieSub, infoNode)
         #break
 
-    print 'Ò»¹²',len(infoSet),'¸öĞÅÏ¢.'
+    nnFile = open("nn.txt", "w+b")
+    xx = 'ä¸€å…±' + str(len(infoSet)) + 'ä¸ªä¿¡æ¯.\r\n'
+    nnFile.write(xx)
     idx = 0
     for info in infoSet:
-        print 'µÚ', idx, '¸ö'
-        print info
+        xx = 'ç¬¬' + str(idx) + 'ä¸ª\r\n'
+        xx = xx + str(info) + "\r\n"
+        nnFile.write(xx)
         idx += 1
+    nnFile.close()
 
 
 if __name__=='__main__':
+    LOG_FILENAME="ganji.txt"
+    logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG, format='%(asctime)s - %(levelname)s: %(message)s')
+    #logging.info("test")
+
     ieMain = open_ie("http://nn.ganji.com/fang1/")
     ieMain.Visible=1    
     wait_ie(ieMain)
@@ -279,6 +296,11 @@ if __name__=='__main__':
          
 
     get_fang_info(ieMain, ieSub)
+
+
+
+
+
 
 
 ##    ie6.Quit()

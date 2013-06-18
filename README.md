@@ -18,6 +18,7 @@ pyOpenSSL-0.13.winxp32-py2.7.exe
 windmill\server\sslcerts\master.crt
 PIL-1.1.7.win32-py2.7.exe
 pytesser_v0.0.1.zip ÐÞ¸ÄÂ·¾¶
+py2exe-0.6.9.win32-py2.7.exe(from distutils.core import setup, import py2exe, setup(console=["helloworld.py"]))
 =================================================================================
 
 AutoVerify
