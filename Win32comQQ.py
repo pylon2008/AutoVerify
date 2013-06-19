@@ -210,7 +210,7 @@ if __name__=='__main__':
     ie6.Visible=1    
     wait_ie(ie6)
 
-    imgVerifior = ImageCodeVerifier("pylliang", "qazwsx")
+    imgVerifior = ImageCodeVerifier("", "")
     imgVerifior.login()
     
     get_qq_num(ie6, imgVerifior)
