@@ -6,7 +6,7 @@ import win32com.client, win32inet, win32file
 import time, os
 import Image,ImageEnhance,ImageFilter
 from pytesser import *
-from ImageCodeVerifier import *
+from verfcoderecognizer import *
 
 def set_element_value(ie, elementID, value):
     thisValue = ''
@@ -210,7 +210,7 @@ if __name__=='__main__':
     ie6.Visible=1    
     wait_ie(ie6)
 
-    imgVerifior = ImageCodeVerifier("", "")
+    imgVerifior = VerificationCodeRecognizer("", "")
     imgVerifior.login()
     
     get_qq_num(ie6, imgVerifior)
