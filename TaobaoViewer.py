@@ -15,22 +15,45 @@ def view_a_shop(shopIE):
                 href = nodeParent.getAttribute("href")
                 if type(href)==unicode and href!=u"":
                     if u"detail" in href:
-                        allPossibleNode += [nodeParent]
+                        client = node.getBoundingClientRect()
+                        if client.top >= 3500:
+                            allPossibleNode += [nodeParent]
+                            break
+##                        allPossibleNode += [nodeParent]
     
     window = shopIE.getWindow()
-    scrollDelta = 30
+    scrollDelta = 25
     inter = shopIE.getBody().scrollHeight / scrollDelta
+    inter = inter * 9 / 10
     for i in range(inter):
         window.scrollBy(0,scrollDelta)
+        shopIE.waitBusy()
+        shopIE.waitReadyState()
         time.sleep(0.1)
         if isNodeInScreen(allPossibleNode[0], shopIE)==True:
             break
-    window.moveTo(window.screenLeft-100, window.screenTop-100)
 
-##    allPossibleNode[0].click()
-##    allPossibleNode[0].focus()
-    print allPossibleNode[0]
+    allPossibleNode[0].focus()
 
+    href = nodeParent.getAttribute("href")
+    url = str(href)
+    subIE = IEExplorer() 
+    subIE.openURL(url)
+    subIE.setVisible(1)
+    subIE.waitBusy()
+    subIE.waitReadyState()
+
+    # move window
+    subWindow = subIE.getWindow()
+    for i in range(50):
+        delta = -50
+        subWindow.moveTo(subWindow.screenLeft-delta, subWindow.screenTop-delta)
+        time.sleep(0.1)
+
+    raw_input("请按回车键结束演示。 ")
+    subIE.quit()
+    time.sleep(1)
+    shopIE.quit()
 
 
 if __name__=='__main__':

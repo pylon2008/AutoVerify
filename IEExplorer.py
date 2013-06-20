@@ -47,10 +47,12 @@ def isNodeInScreen(node, ie):
     clientHeight = ie.getClientHeight()
     isIn = True
     if clientHeight<=nodeHeight:
-        if client.top>0 and client.top<70:
-            isIn = True
-        else:
-            isIn = False
+        isIn = False
+##        print clientHeight, ", ", nodeHeight
+##        if client.top>0 and client.top<70:
+##            isIn = True
+##        else:
+##            isIn = False
     else:
         if client.top<((clientHeight-nodeHeight)/2):
             isIn = True
