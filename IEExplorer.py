@@ -82,6 +82,11 @@ class IEExplorer(object):
     def getBody(self):
         return self.ie.Document.body
 
+    # window.screenLeft
+    # window.screenTop
+    def getWindow(self):
+        return self.ie.Document.parentWindow
+
     def quit(self):
         self.ie.quit()
 
