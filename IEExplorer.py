@@ -2,6 +2,11 @@
 import win32com.client
 import time
 
+# 获取屏幕的宽、高
+##width = win32api.GetSystemMetrics(win32con.SM_CXSCREEN)
+##height = win32api.GetSystemMetrics(win32con.SM_CYSCREEN)
+
+
 def existIE(url):
     ShellWindowsCLSID = '{9BA05972-F6A8-11CF-A442-00A0C90A8F39}'  
     ies = win32com.client.DispatchEx(ShellWindowsCLSID)  
@@ -12,6 +17,7 @@ def existIE(url):
             return ie  
     return None
 
+# 模拟人工输入文本
 def enumHumanInput(node, value):
     thisValue = ''
     for c in value:
@@ -27,12 +33,30 @@ def getSubNodesByTag(parentNode, tag):
         childNodes.append(childNode)  
     return childNodes
 
-#在节点集合nodes中查找属性attr为值val的节点
+# 在节点集合nodes中查找属性attr为值val的节点
 def getNodeByAttr(nodes, attr, val):
     for node in nodes:  
         if str(node.getAttribute(attr))==val:  
             return node  
     return None
+
+# 判断节点是否在屏幕范围内
+def isNodeInScreen(node, ie):
+    client = node.getBoundingClientRect()
+    nodeHeight = client.bottom - client.top
+    clientHeight = ie.getClientHeight()
+    isIn = True
+    if clientHeight<=nodeHeight:
+        if client.top>0 and client.top<70:
+            isIn = True
+        else:
+            isIn = False
+    else:
+        if client.top<((clientHeight-nodeHeight)/2):
+            isIn = True
+        else:
+            isIn = False
+    return isIn
 
 class IEExplorer(object):
     def __init__(self):
@@ -95,6 +119,10 @@ class IEExplorer(object):
 
     def locationURL(self):
         return self.ie.LocationURL
+
+    # 获取屏幕的可视高度
+    def getClientHeight(self):
+        return self.ie.Document.documentElement.clientHeight
 
 
 
