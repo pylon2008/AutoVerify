@@ -1,5 +1,5 @@
 # coding=GBK
-import win32com.client
+import win32com.client, win32gui
 import time
 
 # 获取屏幕的宽、高
@@ -11,9 +11,16 @@ def existIE(url):
     ShellWindowsCLSID = '{9BA05972-F6A8-11CF-A442-00A0C90A8F39}'  
     ies = win32com.client.DispatchEx(ShellWindowsCLSID)  
     if len(ies)==0:  
-        return None  
-    for ie in ies:  
-        if ie.LocationURL==url:  
+        return None
+    print "num ie: ", len(ies)
+    for ie in ies:
+        ieURL = ie.LocationURL
+        if type(ie.LocationURL) == unicode:
+            ieURL = str(ie.LocationURL)
+        newURL = url
+        if newURL[-1]=='\n':
+            newURL = newURL[0:-1]
+        if ieURL==newURL:
             return ie  
     return None
 
@@ -73,6 +80,7 @@ class IEExplorer(object):
         self.ie = existIE(url)
         if self.ie == None:
             self.newIE(url)
+        self.setForeground()
 
     def navigate(self, url):
         self.ie.Navigate(url)
@@ -104,6 +112,10 @@ class IEExplorer(object):
 
     def getIE(self):
         return self.ie
+
+    def setForeground(self):
+        win32gui.SetForegroundWindow(self.ie.hwnd)
+
     
     def getBody(self):
         return self.ie.Document.body

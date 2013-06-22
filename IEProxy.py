@@ -60,9 +60,9 @@ class IEProxy(object):
         f=file(proxyFile,'r')
         while True:
             line=f.readline()
-            self.proxySet.append(line)
             if len(line)==0:
                 break
+            self.proxySet.append(line)
         f.close()
         self.curProxyIdx = -1
         self.errorSet = []
