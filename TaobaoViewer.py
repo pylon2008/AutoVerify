@@ -12,8 +12,6 @@ class TaobaoBaobei(object):
         self.subIESet = []
         self.imgHrefNodes = []
         self.subNodes = []
-        self.getImgHrefNodes()
-        self.getRandomSubIE()
 
     def getRandomSubIE(self):
         numSubIE = random.randint(2, 4)
@@ -24,7 +22,6 @@ class TaobaoBaobei(object):
 ##        for node in self.imgHrefNodes:
 ##            print node.getBoundingClientRect().top
 
-        print numSubIE
         allIdxs = []
         for i in range(numSubIE):
             xx = random.randint(0, numImgHrefNodes-1)
@@ -65,8 +62,6 @@ class TaobaoBaobei(object):
         ie = IEExplorer()
         ie.openURL(url)
         ie.setVisible(1)
-        ie.waitBusy()
-        ie.waitReadyState()
         self.subIESet.append(ie)
 
     def getMainIE(self):
@@ -75,20 +70,36 @@ class TaobaoBaobei(object):
     def getNewSubIE(self, subIdx):
         return self.subIESet[subIdx]
 
-    def stayInSubIE(self, subIdx, stayTime):
-        ie = self.getNewSubIE(subIdx)
-        window = ie.getWindow()
-        scrollDelta = 25
-        deltaTime = 0.1
-        inter = float(stayTime) / deltaTime
-        inter = int(inter)
-##        inter = ie.getBody().scrollHeight / scrollDelta
-##        inter = inter * 9 / 10
-        for i in range(inter):
-            window.scrollBy(0,scrollDelta)
-            ie.waitBusy()
-            ie.waitReadyState()
-            time.sleep(deltaTime)
+    def viewCurBaobei(self):
+        self.getImgHrefNodes()
+        self.getRandomSubIE()
+        
+        numSubIE = self.getNumSubIE()
+        for subIdx in range(numSubIE):
+            subNode = self.subNodes[subIdx]
+            self.mainIE.scrollToNode(subNode)
+            subNode.focus()
+            self.createNewSubIE(subIdx)
+            time.sleep(2)
+
+            self.mainIE.setForeground()
+            self.mainIE.resizeMax()
+            self.mainIE.waitBusy()
+            self.mainIE.waitReadyState()
+
+        for subIdx in range(numSubIE):
+            subIE = self.getNewSubIE(subIdx)
+            subIE.setForeground()
+            subIE.resizeMax()
+            isBusy = subIE.waitBusy()
+            isReady = subIE.waitReadyState()
+            if isBusy==True or isReady==True:
+                subIE.quit()
+            timeOut = 8
+            subIE.stayInSubPage(timeOut)
+            subIE.quit()
+           
+
 
 class TaobaoViewer(object):
     def __init__(self):
@@ -127,14 +138,12 @@ class TaobaoViewer(object):
         ieExplorer = IEExplorer()
         ieExplorer.openURL(url)
         ieExplorer.setVisible(1)
-        ieExplorer.waitBusy()
-        ieExplorer.waitReadyState()
         store = TaobaoBaobei(ieExplorer)
         self.mainIE.append(store)
 
+    def getBaobei(self, visitIdx):
+        return self.mainIE[visitIdx]
 
-        
-    
     def unInit(self):
         self.file.close()
 
@@ -142,10 +151,30 @@ class TaobaoViewer(object):
 
 
 def view_3_baobei():
-    viewer = TaobaoViewer()
-    numVisitBaobei = viewer.numVisit()
-    for idx in range(numVisitBaobei):
-        viewer.createBaobei(idx)
+    try:
+        viewer = TaobaoViewer()
+        numVisitBaobei = viewer.numVisit()
+        for idx in range(numVisitBaobei):
+            viewer.createBaobei(idx)
+
+        for idx in range(numVisitBaobei):
+            baobei = viewer.getBaobei(idx)
+            mainIE = baobei.getMainIE()
+            mainIE.setForeground()
+            mainIE.resizeMax()
+            mainIE.waitBusy()
+            mainIE.waitReadyState()
+            baobei.viewCurBaobei()
+            mainIE.quit()
+    except:
+        numVisitBaobei = viewer.numVisit()
+        for mainIdx in range(numVisitBaobei):
+            baobei = viewer.getBaobei(idx)
+            for sunIdx in range(baobei.getNumSubIE()):
+                subIE = baobei.getNewSubIE(subIdx)
+                subIE.quit()
+            baobei.getMainIE().quit()
+
 
 if __name__=='__main__':
     ieProxy = IEProxy("proxy.txt")
