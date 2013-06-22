@@ -72,7 +72,6 @@ class IEProxy(object):
             self.curProxyIdx += 1
             if self.curProxyIdx >= len(self.proxySet):
                 self.curProxyIdx = 0
-            print self.curProxyIdx
             isOk = isProxyValid(self.proxySet[self.curProxyIdx])
             if isOk==True:
                 break

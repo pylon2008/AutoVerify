@@ -6,10 +6,26 @@ import time, datetime
 ##width = win32api.GetSystemMetrics(win32con.SM_CXSCREEN)
 ##height = win32api.GetSystemMetrics(win32con.SM_CYSCREEN)
 
+IE_INTERVAL_TIME_CLOSE = 1
+IE_INTERVAL_TIME_SACROLL = 0.08
+IE_TIME_OUT_SCROLL = 2
+IE_TIME_OUT_NEW_PAGE = 8
+
+def getAllRunningIE():
+    ShellWindowsCLSID = '{9BA05972-F6A8-11CF-A442-00A0C90A8F39}'  
+    ies = win32com.client.DispatchEx(ShellWindowsCLSID)
+    return ies
+
+def closeAllRunningIE():
+    ies = getAllRunningIE()
+    for ie in ies:
+        if u"http://" in ie.LocationURL:
+            print "closeAllRunningIE: ", ie.LocationURL
+            ie.quit()
+            time.sleep(IE_INTERVAL_TIME_CLOSE)
 
 def existIE(url):
-    ShellWindowsCLSID = '{9BA05972-F6A8-11CF-A442-00A0C90A8F39}'  
-    ies = win32com.client.DispatchEx(ShellWindowsCLSID)  
+    ies = getAllRunningIE()
     if len(ies)==0:  
         return None
     for ie in ies:
@@ -88,7 +104,8 @@ class IEExplorer(object):
     def __init__(self):
         self.ie = None
         self.oldURL = ""
-        self.PageTimeOut = 4.0
+        self.PageTimeOut = 10.0
+        self.timeBegOp = None                   # 开始操作宝贝的起点时间，从开始滚动开始
 
     def newIE(self, url):  
         self.ie = win32com.client.Dispatch("InternetExplorer.Application")
@@ -103,7 +120,7 @@ class IEExplorer(object):
     def navigate(self, url):
         self.ie.Navigate(url)
 
-    def waitReadyState(self):
+    def waitReadyState(self, totalTimeout):
         isBusy = False
         timeout = 0.0
         while True:
@@ -113,12 +130,12 @@ class IEExplorer(object):
                 deltaTime = 0.5
                 time.sleep(deltaTime)
                 timeout += deltaTime
-            if timeout>=self.PageTimeOut:
+            if timeout>=totalTimeout:
                 isBusy = True
                 break
         return isBusy
         
-    def waitNavigate(self, oldURL):
+    def waitNavigate(self, oldURL, totalTimeout):
         self.waitReadyState()
         timeout = 0.0
         isBusy = False
@@ -129,12 +146,12 @@ class IEExplorer(object):
                 deltaTime = 0.5
                 time.sleep(deltaTime)
                 timeout += deltaTime
-            if timeout>=self.PageTimeOut:
+            if timeout>=totalTimeout:
                 isBusy = True
                 break
         return isBusy
                 
-    def waitBusy(self):
+    def waitBusy(self, totalTimeout):
         isBusy = False
         timeout = 0.0
         while True:
@@ -144,7 +161,7 @@ class IEExplorer(object):
                 timeout += deltaTime
             else:
                 break
-            if timeout>=self.PageTimeOut:
+            if timeout>=totalTimeout:
                 isBusy = True
                 break
         return isBusy
@@ -193,24 +210,24 @@ class IEExplorer(object):
         while isIn==False:
             for delta in scrollDelta:
                 window.scrollBy(0,delta*scrollDirection)
-                self.waitBusy()
-                self.waitReadyState()
-                #time.sleep(0.1)
+                self.waitBusy(IE_TIME_OUT_SCROLL)
+                self.waitReadyState(IE_TIME_OUT_SCROLL)
                 if isNodeInScreen(node, self)==True:
                     isIn = True
                     break
-            time.sleep(0.1)
+            time.sleep(IE_INTERVAL_TIME_SACROLL)
 
     def stayInSubPage(self, timeOut):
         window = self.getWindow()
         scrollDelta = [20,30,40,50,60,70]
         a = datetime.datetime.now()
+        self.timeBegOp = a
         while True:
             for delta in scrollDelta:
                 window.scrollBy(0,delta)
-                self.waitBusy()
-                self.waitReadyState()
-
+                self.waitBusy(IE_TIME_OUT_SCROLL)
+                self.waitReadyState(IE_TIME_OUT_SCROLL)
+            time.sleep(IE_INTERVAL_TIME_SACROLL)
             b = datetime.datetime.now()
             deltaTime = (b-a).seconds
             if deltaTime >= timeOut:
