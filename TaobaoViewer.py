@@ -5,6 +5,10 @@ import random
 from IEExplorer import *
 from IEProxy import *
 
+NUM_BAT_TAOBAO_BAOBEI_VIEW = 2                  # 一次浏览宝贝的数量
+NUM_SUB_PAGE_MIN = 1                            # 子页面数量最小值
+NUM_SUB_PAGE_MAX = 1                            # 子页面数量最大值
+TIME_PROXY_CHANGE = 30                          # 切换IP地址总时间
 
 class TaobaoBaobei(object):
     def __init__(self, mainIE):
@@ -15,7 +19,7 @@ class TaobaoBaobei(object):
         self.timeBegOp = None                   # 开始操作宝贝的起点时间，从开始滚动开始
 
     def getRandomSubIE(self):
-        numSubIE = random.randint(2, 4)
+        numSubIE = random.randint(NUM_SUB_PAGE_MIN, NUM_SUB_PAGE_MAX)
         numImgHrefNodes = len(self.imgHrefNodes)
         if numSubIE > numImgHrefNodes:
             numSubIE = numImgHrefNodes
@@ -81,9 +85,15 @@ class TaobaoBaobei(object):
         numSubIE = self.getNumSubIE()
         for subIdx in range(numSubIE):
             # 回宝贝界面
+            while self.mainIE.waitBusy(IE_TIME_OUT_NEW_PAGE)==True:
+                self.mainIE.stop()
+                time.sleep(0.1)
+            self.mainIE.waitReadyState(IE_TIME_OUT_NEW_PAGE)
             self.mainIE.setForeground()
             self.mainIE.resizeMax()
-            self.mainIE.waitBusy(IE_TIME_OUT_NEW_PAGE)
+            while self.mainIE.waitBusy(IE_TIME_OUT_NEW_PAGE)==True:
+                self.mainIE.stop()
+                time.sleep(0.1)
             self.mainIE.waitReadyState(IE_TIME_OUT_NEW_PAGE)
 
             # 打开子页面
@@ -94,35 +104,22 @@ class TaobaoBaobei(object):
 
             # 滚动子页面
             subIE = self.getNewSubIE(subIdx)
-            isBusy = subIE.waitBusy(IE_TIME_OUT_NEW_PAGE)
+            while subIE.waitBusy(IE_TIME_OUT_NEW_PAGE)==True:
+                subIE.stop()
+                time.sleep(0.1)
             isReady = subIE.waitReadyState(IE_TIME_OUT_NEW_PAGE)
-            if isBusy==True or isReady==True:
-                subIE.quit()
             timeOut = random.randint(3, 5)
             subIE.stayInSubPage(timeOut)
 
             if subIdx != numSubIE-1:
-                time.sleep(2)
-
-##        for subIdx in range(numSubIE):
-##            subIE = self.getNewSubIE(subIdx)
-##            subIE.setForeground()
-##            subIE.resizeMax()
-##            isBusy = subIE.waitBusy()
-##            isReady = subIE.waitReadyState()
-##            if isBusy==True or isReady==True:
-##                subIE.quit()
-##            timeOut = 8
-##            subIE.stayInSubPage(timeOut)
-##            subIE.quit()
-           
+                time.sleep(2)           
 
 
 class TaobaoViewer(object):
     def __init__(self):
-        self.mainIE = []            # 本次浏览集合
-        self.baobeiSet = []         # 配置文件中所有的宝贝集合
-        self.numBaobei = 3          # 一次打开的宝贝的数量
+        self.mainIE = []                                    # 本次浏览集合
+        self.baobeiSet = []                                 # 配置文件中所有的宝贝集合
+        self.numBaobei = NUM_BAT_TAOBAO_BAOBEI_VIEW         # 一次打开的宝贝的数量
 
         # 读取所有宝贝
         self.file = file('UrlConfig.txt', 'r')
@@ -144,6 +141,7 @@ class TaobaoViewer(object):
                     if self.baobeiSet[rr][0] > 0:
                         self.randomVisit.append(rr)
                         break
+        print self.randomVisit
         
     def numVisit(self):
         return len(self.randomVisit)
@@ -151,7 +149,7 @@ class TaobaoViewer(object):
     def createBaobei(self, visitIdx):
         realIdx = self.randomVisit[visitIdx]
         self.baobeiSet[realIdx][0] -= 1
-        url = self.baobeiSet[visitIdx][1]
+        url = self.baobeiSet[realIdx][1]
         ieExplorer = IEExplorer()
         ieExplorer.openURL(url)
         ieExplorer.setVisible(1)
@@ -175,16 +173,22 @@ class TaobaoViewer(object):
                 subIE = baobei.getNewSubIE(subIdx)
                 print "subIdx: ", subIdx,
                 print ", type(subIE): ", type(subIE)
+                while subIE.waitBusy(IE_TIME_OUT_NEW_PAGE)==True:
+                    subIE.stop()
+                    time.sleep(0.1)
                 subIE.setForeground()
                 time.sleep(IE_INTERVAL_TIME_CLOSE)
                 subIE.quit()
+            while baobei.getMainIE().waitBusy(IE_TIME_OUT_NEW_PAGE)==True:
+                baobei.getMainIE().stop()
+                time.sleep(0.1)
             baobei.getMainIE().setForeground()
             time.sleep(IE_INTERVAL_TIME_CLOSE)
             baobei.getMainIE().quit()
 
 
 def view_3_baobei():
-    viewer = TaobaoViewer()
+    viewer = TaobaoViewer() 
 
     # 打开3个宝贝界面
     numVisitBaobei = viewer.numVisit()
@@ -196,9 +200,14 @@ def view_3_baobei():
     for idx in range(numVisitBaobei):
         baobei = viewer.getBaobei(idx)
         mainIE = baobei.getMainIE()
+        while mainIE.waitBusy(IE_TIME_OUT_NEW_PAGE)==True:
+            mainIE.stop()
+            time.sleep(0.1)
         mainIE.setForeground()
         mainIE.resizeMax()
-        mainIE.waitBusy(IE_TIME_OUT_NEW_PAGE)
+        while mainIE.waitBusy(IE_TIME_OUT_NEW_PAGE)==True:
+            mainIE.stop()
+            time.sleep(0.1)
         mainIE.waitReadyState(IE_TIME_OUT_NEW_PAGE)
         baobei.openCurBaobei()
         if idx==0:
@@ -232,64 +241,20 @@ if __name__=='__main__':
 ##        closeAllRunningIE()
         
         # change IP
+        timeProxyBeg = datetime.datetime.now()
         ieProxy.changeProxy()
+        timeProxyEnd = datetime.datetime.now()
+        deltaTime = (timeProxyEnd - timeProxyBeg).seconds
+        print "change proxy time: ", deltaTime
+        sleepTime = TIME_PROXY_CHANGE - deltaTime
+        if sleepTime < 10:
+            sleepTime = 10
+        time.sleep(sleepTime)
         batIdx += 1
 
 
-    
-def view_a_shop(store):
-    numSubIE = store.getNumSubIE()
-    for i in range(numSubIE):
-        store.createNewSubIE(i)
-        subIE = store.getNewSubIE(i)
-        store.stayInSubIE(i, 5)
-        subIE.quit()
-    
 
-    
-    window = shopIE.getWindow()
-    scrollDelta = 25
-    inter = shopIE.getBody().scrollHeight / scrollDelta
-    inter = inter * 9 / 10
-    for i in range(inter):
-        window.scrollBy(0,scrollDelta)
-        shopIE.waitBusy(IE_TIME_OUT_NEW_PAGE)
-        shopIE.waitReadyState(IE_TIME_OUT_NEW_PAGE)
-        time.sleep(0.1)
-        if isNodeInScreen(allPossibleNode[0], shopIE)==True:
-            break
-
-    allPossibleNode[0].focus()
-
-    href = nodeParent.getAttribute("href")
-    url = str(href)
-    subIE = IEExplorer() 
-    subIE.openURL(url)
-    subIE.setVisible(1)
-    subIE.waitBusy(IE_TIME_OUT_NEW_PAGE)
-    subIE.waitReadyState(IE_TIME_OUT_NEW_PAGE)
-
-    # move window
-    subWindow = subIE.getWindow()
-    for i in range(50):
-        delta = -50
-        subWindow.moveTo(subWindow.screenLeft-delta, subWindow.screenTop-delta)
-        time.sleep(0.1)
-
-    raw_input("请按回车键结束演示。 ")
-    subIE.quit()
-    time.sleep(1)
-    shopIE.quit()
-
-def test_element():
-    url = "http://hyxjf.tmall.com/?spm=a220o.1000855.w3-17818260047.2.zjWNtO&scene=taobao_shop&scene=taobao_shop"
-    ieExplorer = IEExplorer()
-    ieExplorer.openURL(url)
-    ieExplorer.setVisible(1)
-    ieExplorer.waitBusy(IE_TIME_OUT_NEW_PAGE)
-    ieExplorer.waitReadyState(IE_TIME_OUT_NEW_PAGE)
-
-    store = TaobaoBaobei(ieExplorer)
-    view_a_shop(store)
-
-##if __name__=='__main__':
+# TODO
+#1.URL配置文件要记录到文件
+#2.代理的设置时刻可改在停顿时
+#3.找新代理点

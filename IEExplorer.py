@@ -9,7 +9,7 @@ import time, datetime
 IE_INTERVAL_TIME_CLOSE = 1
 IE_INTERVAL_TIME_SACROLL = 0.08
 IE_TIME_OUT_SCROLL = 2
-IE_TIME_OUT_NEW_PAGE = 8
+IE_TIME_OUT_NEW_PAGE = 10
 
 def getAllRunningIE():
     ShellWindowsCLSID = '{9BA05972-F6A8-11CF-A442-00A0C90A8F39}'  
@@ -21,6 +21,9 @@ def closeAllRunningIE():
     for ie in ies:
         if u"http://" in ie.LocationURL:
             print "closeAllRunningIE: ", ie.LocationURL
+            while ie.Busy==True:
+                ie.stop()
+                time.sleep(0.1)
             ie.quit()
             time.sleep(IE_INTERVAL_TIME_CLOSE)
 
@@ -73,7 +76,6 @@ def isNodeInScreen(node, ie):
     ieMiddle = clientHeight/2
     isIn = True
     if clientHeight<=nodeHeight:
-        print clientHeight, ", ", nodeHeight
         if client.top>0 and client.top<70:
             isIn = True
         else:
@@ -115,7 +117,7 @@ class IEExplorer(object):
         self.ie = existIE(url)
         if self.ie == None:
             self.newIE(url)
-        self.setForeground()
+        #self.setForeground()
 
     def navigate(self, url):
         self.ie.Navigate(url)
@@ -133,6 +135,8 @@ class IEExplorer(object):
             if timeout>=totalTimeout:
                 isBusy = True
                 break
+        if isBusy==True:
+            print "waitReadyState: ", isBusy
         return isBusy
         
     def waitNavigate(self, oldURL, totalTimeout):
@@ -149,6 +153,8 @@ class IEExplorer(object):
             if timeout>=totalTimeout:
                 isBusy = True
                 break
+        if isBusy==True:
+            print "waitNavigate: ", isBusy
         return isBusy
                 
     def waitBusy(self, totalTimeout):
@@ -164,6 +170,8 @@ class IEExplorer(object):
             if timeout>=totalTimeout:
                 isBusy = True
                 break
+        if isBusy==True:
+            print "waitBusy: ", isBusy
         return isBusy
 
     def setVisible(self, visible):
@@ -190,7 +198,13 @@ class IEExplorer(object):
         return self.ie.Document.parentWindow
 
     def quit(self):
+        while self.waitBusy(IE_TIME_OUT_SCROLL)==True:
+            self.stop()
+            time.sleep(0.1)
         self.ie.quit()
+
+    def stop(self):
+        self.ie.stop()
 
     def isBusy(self):
         return self.ie.Busy
@@ -204,29 +218,33 @@ class IEExplorer(object):
 
     def scrollToNode(self, node):
         scrollDirection = getScrollDirection(node, self)
-        window = self.getWindow()
         scrollDelta = [20,30,40,50,60,70]
         isIn = False
         while isIn==False:
             for delta in scrollDelta:
-                window.scrollBy(0,delta*scrollDirection)
-                self.waitBusy(IE_TIME_OUT_SCROLL)
+                while self.waitBusy(IE_TIME_OUT_SCROLL)==True:
+                    self.stop()
+                    time.sleep(0.1)
                 self.waitReadyState(IE_TIME_OUT_SCROLL)
+                self.getWindow().scrollBy(0,delta*scrollDirection)
                 if isNodeInScreen(node, self)==True:
                     isIn = True
                     break
             time.sleep(IE_INTERVAL_TIME_SACROLL)
 
     def stayInSubPage(self, timeOut):
-        window = self.getWindow()
         scrollDelta = [20,30,40,50,60,70]
         a = datetime.datetime.now()
         self.timeBegOp = a
         while True:
             for delta in scrollDelta:
-                window.scrollBy(0,delta)
-                self.waitBusy(IE_TIME_OUT_SCROLL)
-                self.waitReadyState(IE_TIME_OUT_SCROLL)
+                while self.waitBusy(IE_TIME_OUT_SCROLL)==True:
+                    self.stop()
+                    time.sleep(0.1)
+                isBusy = self.waitReadyState(IE_TIME_OUT_SCROLL)
+                if isBusy==True:
+                    print "stayInSubPage::waitReadyState: ", isBusy
+                self.getWindow().scrollBy(0,delta)
             time.sleep(IE_INTERVAL_TIME_SACROLL)
             b = datetime.datetime.now()
             deltaTime = (b-a).seconds
