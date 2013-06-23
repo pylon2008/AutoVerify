@@ -267,11 +267,10 @@ def view_3_baobei():
 
     # Í£¶Ù
     timePass = (datetime.datetime.now() - timeBegOp).seconds
-    timeSleep = 320 - timePass
+    timeSleep = 360 - timePass
     if timeSleep <= 45:
         timeSleep = 45
     logging.debug("timeSleep: %d", timeSleep)
-    timeSleep = 20
     time.sleep(timeSleep)
 
     # ¹Ø±ÕËùÓÐ±¦±´
@@ -305,7 +304,8 @@ if __name__=='__main__':
             traceStr = traceback.format_exc()
             logging.error(traceStr)
             closeAllRunningIE()
-        
+
+        break
         # change IP
         try:
             timeProxyBeg = datetime.datetime.now()

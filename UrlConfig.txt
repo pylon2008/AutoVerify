@@ -1,6 +1,6 @@
 0 http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
 0 http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
-6 http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+5 http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
 0 http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.9.yj005q&id=17234868278&scene=taobao_shop
-4 http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+3 http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
 0 http://detail.tmall.com/item.htm?spm=a220o.1000855.w31-18405562885.9.yj005q&id=12935068038
