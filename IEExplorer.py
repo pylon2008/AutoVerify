@@ -1,10 +1,11 @@
 # coding=GBK
 import win32com.client, win32gui, win32api
-import time, datetime, traceback, logging
+import time, datetime, traceback, logging, pywintypes
 
 # 获取屏幕的宽、高
 ##width = win32api.GetSystemMetrics(win32con.SM_CXSCREEN)
 ##height = win32api.GetSystemMetrics(win32con.SM_CYSCREEN)
+##ctypes.windll.user32.GetWindowTextLengthW
 
 IE_INTERVAL_TIME_CLOSE = 1
 IE_INTERVAL_TIME_SACROLL = 0.08
@@ -193,14 +194,21 @@ class IEExplorer(object):
     def getIE(self):
         return self.ie
 
+    def getIEHandle(self):
+        debugInfo = "type(self.ie.hwnd): " + str(type(self.ie.hwnd)) \
+                    + ", self.ie.hwnd: " + str(self.ie.hwnd)
+        logging.debug(debugInfo)
+        PyHANDLE = pywintypes.HANDLE(self.ie.hwnd)
+        return PyHANDLE
+
     def setForeground(self):
-        win32gui.SetForegroundWindow(self.ie.hwnd)
+        win32gui.SetForegroundWindow(self.getIEHandle())
 
     def resizeMax(self):
         WM_SYSCOMMAND = int('112', 16)
         SC_MINIMIZE = int('F020', 16)
         SC_MAXIMIZE = int('F030', 16)
-        win32api.SendMessage(self.ie.hwnd, WM_SYSCOMMAND, SC_MAXIMIZE, 0)
+        win32api.SendMessage(self.getIEHandle(), WM_SYSCOMMAND, SC_MAXIMIZE, 0)
     
     def getBody(self):
         return self.ie.Document.body
