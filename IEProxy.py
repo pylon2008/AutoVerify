@@ -1,6 +1,6 @@
 #coding=GBK
 import urllib2
-import win32api, win32inet, datetime
+import win32api, win32inet, datetime, logging
 import win32con, win32file, random, traceback
 
 
@@ -108,7 +108,9 @@ class IEProxy(object):
         try:
             clearProxy()
         except:
-            traceback.print_exc()
+            logging.error("clearProxy exception")
+            traceStr = traceback.format_exc()
+            logging.error(traceStr)
         
 
     def writeProxy(self):

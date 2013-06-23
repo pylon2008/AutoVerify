@@ -1,6 +1,6 @@
 # coding=GBK
 import win32com.client, win32gui, win32api
-import time, datetime, traceback
+import time, datetime, traceback, logging
 
 # 获取屏幕的宽、高
 ##width = win32api.GetSystemMetrics(win32con.SM_CXSCREEN)
@@ -22,11 +22,11 @@ def getAllRunningIE():
 def closeAllRunningIE():
     try:
         ies = getAllRunningIE()
-        print "len(ies): ", len(ies)
+        logging.debug("len(ies): %d", len(ies))
         for ie in ies:
-            print "ie.LocationURL: ", ie.LocationURL
+            logging.debug("ie.LocationURL: %s", ie.LocationURL)
             if u"http://" in ie.LocationURL:
-                print "closeAllRunningIE: ", ie.LocationURL
+                logging.debug("closeAllRunningIE: %s", ie.LocationURL)
                 while ie.Busy==True:
                     ie.stop()
                     time.sleep(0.1)
@@ -35,8 +35,9 @@ def closeAllRunningIE():
             else:
                 a = 0
     except:
-        print "closeAllRunningIE exception"
-        traceback.print_exc()
+        logging.error("closeAllRunningIE exception")
+        traceStr = traceback.format_exc()
+        logging.error(traceStr)
 
 def existIE(url):
     ies = getAllRunningIE()
@@ -66,9 +67,10 @@ def enumHumanInput(node, value):
 
 # 根据tag名称获取父节点的所有子节点
 def getSubNodesByTag(parentNode, tag):
-    childNodes=[]  
-    for childNode in parentNode.getElementsByTagName(tag):  
-        childNodes.append(childNode)  
+    childNodes=[]
+    if parentNode != None:
+        for childNode in parentNode.getElementsByTagName(tag):  
+            childNodes.append(childNode)  
     return childNodes
 
 # 在节点集合nodes中查找属性attr为值val的节点
@@ -147,7 +149,7 @@ class IEExplorer(object):
                 isBusy = True
                 break
         if isBusy==True:
-            print "waitReadyState: ", isBusy
+            logging.debug("waitReadyState: "+str(isBusy))
         return isBusy
         
     def waitNavigate(self, oldURL, totalTimeout):
@@ -165,7 +167,7 @@ class IEExplorer(object):
                 isBusy = True
                 break
         if isBusy==True:
-            print "waitNavigate: ", isBusy
+            logging.debug("waitNavigate: "+str(isBusy))
         return isBusy
                 
     def waitBusy(self, totalTimeout):
@@ -182,7 +184,7 @@ class IEExplorer(object):
                 isBusy = True
                 break
         if isBusy==True:
-            print "waitBusy: ", isBusy
+            logging.debug("waitBusy: "+str(isBusy))
         return isBusy
 
     def setVisible(self, visible):
@@ -254,7 +256,7 @@ class IEExplorer(object):
                     time.sleep(0.1)
                 isBusy = self.waitReadyState(IE_TIME_OUT_SCROLL)
                 if isBusy==True:
-                    print "stayInSubPage::waitReadyState: ", isBusy
+                    logging.debug("stayInSubPage::waitReadyState: "+str(isBusy))
                 self.getWindow().scrollBy(0,delta)
             time.sleep(IE_INTERVAL_TIME_SACROLL)
             b = datetime.datetime.now()

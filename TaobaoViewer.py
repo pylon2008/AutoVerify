@@ -1,5 +1,5 @@
 # coding=GBK
-import time, os, win32inet, win32file
+import time, os, win32inet, win32file, logging
 import win32api,win32gui,win32con, traceback
 import random
 from IEExplorer import *
@@ -78,12 +78,17 @@ class TaobaoBaobei(object):
         return self.subIESet[subIdx]
 
     def openCurBaobei(self):
+        logging.debug("openCurBaobei")
         self.getImgHrefNodes()
         self.getRandomSubIE()
         self.timeBegOp = datetime.datetime.now()
         
         numSubIE = self.getNumSubIE()
         for subIdx in range(numSubIE):
+            debugInfo = "subIdx: " + str(subIdx) + ", url: " + self.subNodes[subIdx].getAttribute("href")
+            logging.debug(debugInfo)
+            debugInfo = "come back to mainIE waitBusy before setForeground: "
+            logging.debug(debugInfo)
             # 回宝贝界面
             while self.mainIE.waitBusy(IE_TIME_OUT_NEW_PAGE)==True:
                 self.mainIE.stop()
@@ -91,18 +96,23 @@ class TaobaoBaobei(object):
             self.mainIE.waitReadyState(IE_TIME_OUT_NEW_PAGE)
             self.mainIE.setForeground()
             self.mainIE.resizeMax()
+            debugInfo = "come back to mainIE waitBusy after setForeground: "
+            logging.debug(debugInfo)
             while self.mainIE.waitBusy(IE_TIME_OUT_NEW_PAGE)==True:
                 self.mainIE.stop()
                 time.sleep(0.1)
             self.mainIE.waitReadyState(IE_TIME_OUT_NEW_PAGE)
 
             # 打开子页面
+            logging.debug("self.mainIE.scrollToNode")
             subNode = self.subNodes[subIdx]
             self.mainIE.scrollToNode(subNode)
             subNode.focus()
+            logging.debug("self.createNewSubIE")
             self.createNewSubIE(subIdx)
 
             # 滚动子页面
+            logging.debug("subIE.stayInSubPage")
             subIE = self.getNewSubIE(subIdx)
             while subIE.waitBusy(IE_TIME_OUT_NEW_PAGE)==True:
                 subIE.stop()
@@ -133,19 +143,49 @@ class TaobaoViewer(object):
             self.baobeiSet.append( [numVisit,url] )
         self.file.close()
 
+        numUnvisit = self.numAllUnvisit()
+        if self.numBaobei > numUnvisit:
+            self.numBaobei = numUnvisit
+
+        if self.numBaobei<=0:
+            return None
+
+        logging.debug("numUnvisit: %d, self.numBaobei: %d", numUnvisit, self.numBaobei)
         # 随机抽取访问对象
+        unvisitIdx = self.allUnvisitIdx()
         self.randomVisit = []
         for i in range(self.numBaobei):
             while True:
-                rr = random.randint(0, len(self.baobeiSet)-1)
+                r = random.randint(0, len(unvisitIdx)-1)
+                rr = unvisitIdx[r]
                 if rr not in self.randomVisit:
                     if self.baobeiSet[rr][0] > 0:
                         self.randomVisit.append(rr)
                         break
-        print self.randomVisit
+        randomStr = "self.randomVisit: " + str(self.randomVisit)
+        logging.debug(randomStr)
         
     def numVisit(self):
         return len(self.randomVisit)
+
+    def numAllUnvisit(self):
+        numUnvisit = 0
+        for baobei in self.baobeiSet:
+            if baobei[0]>0:
+                numUnvisit += 1
+        return numUnvisit
+
+    def allUnvisitIdx(self):
+        unvisit = []
+        for i in range(len(self.baobeiSet)):
+            baobei = self.baobeiSet[i]
+            if baobei[0]>0:
+                unvisit.append(i)
+        return unvisit
+
+    def hasUnvisit(self):
+        numUnvisit = self.numAllUnvisit()
+        return numUnvisit > 0
 
     def createBaobei(self, visitIdx):
         realIdx = self.randomVisit[visitIdx]
@@ -156,6 +196,8 @@ class TaobaoViewer(object):
         ieExplorer.setVisible(1)
         store = TaobaoBaobei(ieExplorer)
         self.mainIE.append(store)
+        debugInfo = "createBaobei visitIdx(" + str(visitIdx) + "): " + url
+        logging.debug(debugInfo)
 
     def getBaobei(self, visitIdx):
         return self.mainIE[visitIdx]
@@ -173,14 +215,13 @@ class TaobaoViewer(object):
     def closeAllIE(self):
         numVisitBaobei = self.numVisit()
         for mainIdx in range(numVisitBaobei):
-            print "mainIdx: ", mainIdx,
             baobei = self.getBaobei(mainIdx)
-            print ", type(baobei): ", type(baobei),
-            print ", baobei.getNumSubIE(): ", baobei.getNumSubIE()
+            debugInfo = "mainIdx: "+ str(mainIdx) + ", type(baobei): " + str(type(baobei)) + ", baobei.getNumSubIE(): " + str(baobei.getNumSubIE())
+            logging.debug(debugInfo)
             for subIdx in range(baobei.getNumSubIE()):
                 subIE = baobei.getNewSubIE(subIdx)
-                print "subIdx: ", subIdx,
-                print ", type(subIE): ", type(subIE)
+                debugInfo = "subIdx: "+str(subIdx)+ ", type(subIE): "+ str(type(subIE))
+                logging.debug(debugInfo)
                 while subIE.waitBusy(IE_TIME_OUT_NEW_PAGE)==True:
                     subIE.stop()
                     time.sleep(0.1)
@@ -208,11 +249,14 @@ def view_3_baobei():
     for idx in range(numVisitBaobei):
         baobei = viewer.getBaobei(idx)
         mainIE = baobei.getMainIE()
+        debugInfo = "mainIE waitBusy before setForeground: " + str(idx)
+        logging.debug(debugInfo)
         while mainIE.waitBusy(IE_TIME_OUT_NEW_PAGE)==True:
             mainIE.stop()
             time.sleep(0.1)
         mainIE.setForeground()
         mainIE.resizeMax()
+        debugInfo = "mainIE waitBusy after setForeground: " + str(idx)
         while mainIE.waitBusy(IE_TIME_OUT_NEW_PAGE)==True:
             mainIE.stop()
             time.sleep(0.1)
@@ -226,7 +270,7 @@ def view_3_baobei():
     timeSleep = 320 - timePass
     if timeSleep <= 45:
         timeSleep = 45
-    print "timeSleep: ", timeSleep
+    logging.debug("timeSleep: %d", timeSleep)
     timeSleep = 20
     time.sleep(timeSleep)
 
@@ -235,20 +279,31 @@ def view_3_baobei():
 
     # write URL config
     viewer.writeUrlConfig()
+    return viewer.hasUnvisit()
 
+def initLogging():
+    LOG_FILENAME="TaobaoViewer.log"
+    logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG, format='%(asctime)s - %(levelname)s: %(message)s')
+    curTime = datetime.datetime.now
+    strTime = str(curTime)
+    logging.debug("===============================================Begin Log===============================================")
 
 if __name__=='__main__':
+    initLogging()
     ieProxy = IEProxy("proxy.txt")
 
+    hasUnvisit = True
     batIdx = 0
-    while True:
-        print "\r\n\r\nbatIdx: ", batIdx
+    while hasUnvisit:
+        logging.debug("\r\n\r\n")
+        logging.debug("batIdx: %d", batIdx)
 
-        // view baobei
+        # view baobei
         try:
-            view_3_baobei()
+            hasUnvisit = view_3_baobei()
         except:
-            traceback.print_exc()
+            traceStr = traceback.format_exc()
+            logging.error(traceStr)
             closeAllRunningIE()
         
         # change IP
@@ -257,21 +312,20 @@ if __name__=='__main__':
             ieProxy.changeProxy()
             timeProxyEnd = datetime.datetime.now()
             deltaTime = (timeProxyEnd - timeProxyBeg).seconds
-            print "change proxy time: ", deltaTime
+            logging.debug("change proxy time: %d", deltaTime)
             sleepTime = TIME_PROXY_CHANGE - deltaTime
             if sleepTime < 10:
                 sleepTime = 10
             time.sleep(sleepTime)
         except:
-            traceback.print_exc()
+            traceStr = traceback.format_exc()
+            logging.error(traceStr)
             ieProxy.clearProxy()
 
         # next view
         batIdx += 1
 
 
-
 # TODO
-#1.URL配置文件要记录到文件
-#2.代理的设置时刻可改在停顿时
-#3.找新代理点
+#1.异常处理可再细化一下，哪个页面有问题，就关闭哪个页面
+#2.找新代理点
