@@ -5,9 +5,9 @@ import random
 from IEExplorer import *
 from IEProxy import *
 
-NUM_BAT_TAOBAO_BAOBEI_VIEW = 2                  # 一次浏览宝贝的数量
-NUM_SUB_PAGE_MIN = 1                            # 子页面数量最小值
-NUM_SUB_PAGE_MAX = 1                            # 子页面数量最大值
+NUM_BAT_TAOBAO_BAOBEI_VIEW = 3                  # 一次浏览宝贝的数量
+NUM_SUB_PAGE_MIN = 2                            # 子页面数量最小值
+NUM_SUB_PAGE_MAX = 4                            # 子页面数量最大值
 TIME_PROXY_CHANGE = 30                          # 切换IP地址总时间
 
 class TaobaoBaobei(object):
@@ -131,6 +131,7 @@ class TaobaoViewer(object):
             numVisit = int(rr[0])
             url = rr[1]
             self.baobeiSet.append( [numVisit,url] )
+        self.file.close()
 
         # 随机抽取访问对象
         self.randomVisit = []
@@ -159,9 +160,16 @@ class TaobaoViewer(object):
     def getBaobei(self, visitIdx):
         return self.mainIE[visitIdx]
 
-    def unInit(self):
-        self.file.close()
-
+    def writeUrlConfig(self):
+        newFile = file("tmp.txt", "w+")
+        for baobei in self.baobeiSet:
+            line = str(baobei[0]) + " " + baobei[1]
+            newFile.write(line)
+        newFile.close()
+        win32file.DeleteFile(u"UrlConfig.txt")
+        win32file.CopyFile(u"tmp.txt", u"UrlConfig.txt", False)
+        #win32file.MoveFile(u"tmp.txt", u"UrlConfig.txt")
+         
     def closeAllIE(self):
         numVisitBaobei = self.numVisit()
         for mainIdx in range(numVisitBaobei):
@@ -226,6 +234,7 @@ def view_3_baobei():
     viewer.closeAllIE()
 
     # write URL config
+    viewer.writeUrlConfig()
 
 
 if __name__=='__main__':
@@ -234,22 +243,30 @@ if __name__=='__main__':
     batIdx = 0
     while True:
         print "\r\n\r\nbatIdx: ", batIdx
-        view_3_baobei()
-##    try:
-##        view_3_baobei()
-##    except:
-##        closeAllRunningIE()
+
+        // view baobei
+        try:
+            view_3_baobei()
+        except:
+            traceback.print_exc()
+            closeAllRunningIE()
         
         # change IP
-        timeProxyBeg = datetime.datetime.now()
-        ieProxy.changeProxy()
-        timeProxyEnd = datetime.datetime.now()
-        deltaTime = (timeProxyEnd - timeProxyBeg).seconds
-        print "change proxy time: ", deltaTime
-        sleepTime = TIME_PROXY_CHANGE - deltaTime
-        if sleepTime < 10:
-            sleepTime = 10
-        time.sleep(sleepTime)
+        try:
+            timeProxyBeg = datetime.datetime.now()
+            ieProxy.changeProxy()
+            timeProxyEnd = datetime.datetime.now()
+            deltaTime = (timeProxyEnd - timeProxyBeg).seconds
+            print "change proxy time: ", deltaTime
+            sleepTime = TIME_PROXY_CHANGE - deltaTime
+            if sleepTime < 10:
+                sleepTime = 10
+            time.sleep(sleepTime)
+        except:
+            traceback.print_exc()
+            ieProxy.clearProxy()
+
+        # next view
         batIdx += 1
 
 

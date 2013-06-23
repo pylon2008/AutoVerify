@@ -1,6 +1,6 @@
 # coding=GBK
 import win32com.client, win32gui, win32api
-import time, datetime
+import time, datetime, traceback
 
 # 获取屏幕的宽、高
 ##width = win32api.GetSystemMetrics(win32con.SM_CXSCREEN)
@@ -14,18 +14,29 @@ IE_TIME_OUT_NEW_PAGE = 10
 def getAllRunningIE():
     ShellWindowsCLSID = '{9BA05972-F6A8-11CF-A442-00A0C90A8F39}'  
     ies = win32com.client.DispatchEx(ShellWindowsCLSID)
-    return ies
+    copyIes = []
+    for ie in ies:
+        copyIes.append(ie)
+    return copyIes
 
 def closeAllRunningIE():
-    ies = getAllRunningIE()
-    for ie in ies:
-        if u"http://" in ie.LocationURL:
-            print "closeAllRunningIE: ", ie.LocationURL
-            while ie.Busy==True:
-                ie.stop()
-                time.sleep(0.1)
-            ie.quit()
-            time.sleep(IE_INTERVAL_TIME_CLOSE)
+    try:
+        ies = getAllRunningIE()
+        print "len(ies): ", len(ies)
+        for ie in ies:
+            print "ie.LocationURL: ", ie.LocationURL
+            if u"http://" in ie.LocationURL:
+                print "closeAllRunningIE: ", ie.LocationURL
+                while ie.Busy==True:
+                    ie.stop()
+                    time.sleep(0.1)
+                ie.quit()
+                time.sleep(IE_INTERVAL_TIME_CLOSE)
+            else:
+                a = 0
+    except:
+        print "closeAllRunningIE exception"
+        traceback.print_exc()
 
 def existIE(url):
     ies = getAllRunningIE()

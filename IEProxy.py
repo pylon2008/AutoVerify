@@ -1,7 +1,15 @@
 #coding=GBK
 import urllib2
-import win32api, win32inet
-import win32con
+import win32api, win32inet, datetime
+import win32con, win32file, random, traceback
+
+
+##datetime.datetime.utcnow()
+##attrs = [("year","年"),('month',"月"),("day","日"),
+##         ('hour',"小时"),( 'minute',"分"),( 'second',"秒"),
+##         ( 'microsecond',"毫秒"),('min',"最小"),( 'max',"最大"),]
+##for k,v in attrs:
+##    "now.%s = %s #%s" % (k,getattr(now, k),v)
 
 ##    # 使用自己的代理地址，注意ProxyHandler()的参数必须是字典类型
 ##    # build_opener()创建一个实例句柄
@@ -56,29 +64,63 @@ def clearProxy():
 
 class IEProxy(object):
     def __init__(self, proxyFile):
+        self.proxyFile = proxyFile
         self.proxySet = []
         f=file(proxyFile,'r')
         while True:
             line=f.readline()
             if len(line)==0:
                 break
-            self.proxySet.append(line)
+            rr = line.split(" ")
+            self.proxySet.append( [rr[0], int(rr[1])] )
         f.close()
         self.curProxyIdx = -1
         self.errorSet = []
 
     def changeProxy(self):
+        PROXY_VALID_FLAG = 567
         while True:
             self.curProxyIdx += 1
             if self.curProxyIdx >= len(self.proxySet):
                 self.curProxyIdx = 0
-            isOk = isProxyValid(self.proxySet[self.curProxyIdx])
-            if isOk==True:
-                break
-            else:
-                if self.curProxyIdx not in self.errorSet:
-                    self.errorSet.append(self.curProxyIdx)
-        setProxy(self.proxySet[self.curProxyIdx])
+            if self.proxySet[self.curProxyIdx][1]==PROXY_VALID_FLAG:
+                isOk = isProxyValid(self.proxySet[self.curProxyIdx][0])
+                value = PROXY_VALID_FLAG
+                if isOk == True:
+                    value = PROXY_VALID_FLAG
+                else:
+                    value = random.randint(0, 1)
+                    if value==0:
+                        value = random.randint(0, PROXY_VALID_FLAG-1)
+                    else:
+                        value = random.randint(PROXY_VALID_FLAG+1, 1000)
+                self.proxySet[self.curProxyIdx][1] = value
+                if isOk==True:
+                    break
+                else:
+                    if self.curProxyIdx not in self.errorSet:
+                        self.errorSet.append(self.curProxyIdx)
+
+        setProxy(self.proxySet[self.curProxyIdx][0])
+        self.writeProxy()
+
+    def clearProxy(self):
+        try:
+            clearProxy()
+        except:
+            traceback.print_exc()
+        
+
+    def writeProxy(self):
+        tmpFile = file("ptmp.txt", "w+")
+        for proxy in self.proxySet:
+            line = proxy[0] + " " + str(proxy[1]) + "\r\n"
+            tmpFile.write(line)
+        tmpFile.close()
+        uFile = self.proxyFile
+        win32file.DeleteFile(uFile)
+        win32file.CopyFile(u"ptmp.txt", uFile, False)
+        #win32file.MoveFile(u"ptmp.txt", uFile)
 
     
 
