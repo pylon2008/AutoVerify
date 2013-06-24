@@ -322,13 +322,17 @@ def zhubajie_2897106():
         logging.debug("\r\n\r\n")
         logging.debug("batIdx: %d", batIdx)
 
+        if isOutOfData()==True:
+            logging.error("isOutOfData" + str(datetime.datetime.now()))
+            time.sleep(24*60*60)
+
         nullIE = None
         #init ev
         try:
             url = "about:blank"
             nullIE = IEExplorer()
             nullIE.newIE(url)
-            nullIE.setVisible(1)
+            nullIE.setVisible(0)
         except:
             logging.error("¿Õ°×Ò³´ò¿ªÒì³£")
             traceStr = traceback.format_exc()

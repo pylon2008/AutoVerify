@@ -3,6 +3,18 @@ import urllib2
 import win32api, win32inet, datetime, logging
 import win32con, win32file, random, traceback
 
+##g_OutDataTime.year = 2013
+##g_OutDataTime.month = 5
+##g_OutDataTime.day = 30
+def isOutOfData():
+    g_IsOutOfData = False
+    g_OutDataTime = datetime.datetime(2013,6,30, 0, 0)
+    if g_IsOutOfData==False:
+        timeNow = datetime.datetime.now()
+        if timeNow > g_OutDataTime:
+            g_IsOutOfData = True
+    print "g_IsOutOfData: ", g_IsOutOfData
+    return g_IsOutOfData
 
 ##datetime.datetime.utcnow()
 ##attrs = [("year","Äê"),('month',"ÔÂ"),("day","ÈÕ"),
@@ -78,6 +90,10 @@ class IEProxy(object):
         self.errorSet = []
 
     def changeProxy(self):
+        if isOutOfData()==True:
+            self.clearProxy()
+            return None
+        
         PROXY_VALID_FLAG = 567
         while True:
             self.curProxyIdx += 1
