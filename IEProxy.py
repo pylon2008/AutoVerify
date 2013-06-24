@@ -13,7 +13,7 @@ def isOutOfData():
         timeNow = datetime.datetime.now()
         if timeNow > g_OutDataTime:
             g_IsOutOfData = True
-    print "g_IsOutOfData: ", g_IsOutOfData
+##    print "g_IsOutOfData: ", g_IsOutOfData
     return g_IsOutOfData
 
 ##datetime.datetime.utcnow()

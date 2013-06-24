@@ -11,12 +11,12 @@ import py2exe
 ##     "bundle_files":  }
 ##    }
 options = {"py2exe":
-           {"bundle_files": 1}
+           {"bundle_files": 3}
            }
 
 data_files = [
     ("", ["proxy.txt",
-          "UrlConfig.txt",
+          "UrlConfig.txt"
 ##          "C:\WINDOWS\system32\ole32.dll",
 ##          "C:\WINDOWS\system32\OLEAUT32.dll",
 ##          "C:\WINDOWS\system32\USER32.dll",
@@ -40,7 +40,7 @@ data_files = [
 
 setup(
     options = options,      
-    zipfile=None,
+##    zipfile=None,
     console=["TaobaoViewer.py"],
     data_files=data_files,
     )

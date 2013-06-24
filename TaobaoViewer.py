@@ -78,6 +78,7 @@ class TaobaoBaobei(object):
         return self.subIESet[subIdx]
 
     def baobeiSrcollBeg(self):
+        self.timeBegOp = datetime.datetime.now()
         mainIE = self.getMainIE()
         while mainIE.waitBusy(IE_TIME_OUT_NEW_PAGE)==True:
             mainIE.stop()
@@ -96,7 +97,6 @@ class TaobaoBaobei(object):
         logging.debug("openCurBaobei")
         self.getImgHrefNodes()
         self.getRandomSubIE()
-        self.timeBegOp = datetime.datetime.now()
         
         numSubIE = self.getNumSubIE()
         for subIdx in range(numSubIE):
@@ -332,7 +332,7 @@ def zhubajie_2897106():
             url = "about:blank"
             nullIE = IEExplorer()
             nullIE.newIE(url)
-            nullIE.setVisible(0)
+            nullIE.setVisible(1)
         except:
             logging.error("¿Õ°×Ò³´ò¿ªÒì³£")
             traceStr = traceback.format_exc()
@@ -364,6 +364,7 @@ def zhubajie_2897106():
 
         #uninit ev
         try:
+            print "quit"
             if nullIE!=None:
                 nullIE.quit()
         except:
