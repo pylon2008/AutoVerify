@@ -77,6 +77,21 @@ class TaobaoBaobei(object):
     def getNewSubIE(self, subIdx):
         return self.subIESet[subIdx]
 
+    def baobeiSrcollBeg(self):
+        mainIE = self.getMainIE()
+        while mainIE.waitBusy(IE_TIME_OUT_NEW_PAGE)==True:
+            mainIE.stop()
+            time.sleep(0.1)
+        mainIE.waitReadyState(IE_TIME_OUT_NEW_PAGE)
+        mainIE.setForeground()
+        while mainIE.waitBusy(IE_TIME_OUT_NEW_PAGE)==True:
+            mainIE.stop()
+            time.sleep(0.1)
+        isReady = mainIE.waitReadyState(IE_TIME_OUT_NEW_PAGE)
+        time.sleep(1)
+        timeOut = random.randint(3, 5)
+        mainIE.stayInSubPage(timeOut)
+
     def openCurBaobei(self):
         logging.debug("openCurBaobei")
         self.getImgHrefNodes()
@@ -95,7 +110,9 @@ class TaobaoBaobei(object):
                 time.sleep(0.1)
             self.mainIE.waitReadyState(IE_TIME_OUT_NEW_PAGE)
             self.mainIE.setForeground()
+            time.sleep(1)
             self.mainIE.resizeMax()
+            time.sleep(1)
             debugInfo = "come back to mainIE waitBusy after setForeground: "
             logging.debug(debugInfo)
             while self.mainIE.waitBusy(IE_TIME_OUT_NEW_PAGE)==True:
@@ -244,8 +261,17 @@ def view_3_baobei():
     for idx in range(numVisitBaobei):
         viewer.createBaobei(idx)
 
-    # 打开宝贝界面的子页面，并滚动子页面
     timeBegOp = None
+    # 每个宝贝界面进行滚动
+    for idx in range(numVisitBaobei):
+        debugInfo = "baobeiSrcollBeg: " + str(idx)
+        logging.debug(debugInfo)
+        baobei = viewer.getBaobei(idx)
+        baobei.baobeiSrcollBeg()
+        if idx==0:
+            timeBegOp = baobei.getTimeBegOp()
+    
+    # 打开宝贝界面的子页面，并滚动子页面
     for idx in range(numVisitBaobei):
         baobei = viewer.getBaobei(idx)
         mainIE = baobei.getMainIE()
@@ -262,8 +288,6 @@ def view_3_baobei():
             time.sleep(0.1)
         mainIE.waitReadyState(IE_TIME_OUT_NEW_PAGE)
         baobei.openCurBaobei()
-        if idx==0:
-            timeBegOp = baobei.getTimeBegOp()
 
     # 停顿
     timePass = (datetime.datetime.now() - timeBegOp).seconds
@@ -287,7 +311,8 @@ def initLogging():
     strTime = str(curTime)
     logging.debug("===============================================Begin Log===============================================")
 
-if __name__=='__main__':
+
+def zhubajie_2897106():
     initLogging()
     ieProxy = IEProxy("proxy.txt")
 
@@ -297,6 +322,18 @@ if __name__=='__main__':
         logging.debug("\r\n\r\n")
         logging.debug("batIdx: %d", batIdx)
 
+        nullIE = None
+        #init ev
+        try:
+            url = "about:blank"
+            nullIE = IEExplorer()
+            nullIE.newIE(url)
+            nullIE.setVisible(1)
+        except:
+            logging.error("空白页打开异常")
+            traceStr = traceback.format_exc()
+            logging.error(traceStr)
+
         # view baobei
         try:
             hasUnvisit = view_3_baobei()
@@ -305,7 +342,6 @@ if __name__=='__main__':
             logging.error(traceStr)
             closeAllRunningIE()
 
-        break
         # change IP
         try:
             timeProxyBeg = datetime.datetime.now()
@@ -322,8 +358,22 @@ if __name__=='__main__':
             logging.error(traceStr)
             ieProxy.clearProxy()
 
+        #uninit ev
+        try:
+            if nullIE!=None:
+                nullIE.quit()
+        except:
+            logging.error("空白页关闭异常")
+            traceStr = traceback.format_exc()
+            logging.error(traceStr)
+
         # next view
         batIdx += 1
+
+
+    
+if __name__=='__main__':
+    zhubajie_2897106()
 
 
 # TODO

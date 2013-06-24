@@ -245,3 +245,812 @@ com_error: (-2147023706, '\xd2\xd1\xbe\xad\xbc\xc6\xbb\xae\xcf\xb5\xcd\xb3\xb9\x
 
 2013-06-24 00:03:56,233 - DEBUG: len(ies): 1
 2013-06-24 00:03:56,247 - DEBUG: ie.LocationURL: file:///G:/WorkStation/GitAutoVerify
+2013-06-24 19:03:10,799 - DEBUG: ===============================================Begin Log===============================================
+2013-06-24 19:03:10,831 - DEBUG: 
+
+
+2013-06-24 19:03:10,831 - DEBUG: batIdx: 0
+2013-06-24 19:03:10,831 - DEBUG: numUnvisit: 6, self.numBaobei: 3
+2013-06-24 19:03:10,831 - DEBUG: self.randomVisit: [5, 4, 3]
+2013-06-24 19:03:12,875 - DEBUG: createBaobei visitIdx(0): http://detail.tmall.com/item.htm?spm=a220o.1000855.w31-18405562885.9.yj005q&id=12935068038
+2013-06-24 19:03:15,763 - DEBUG: createBaobei visitIdx(1): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+
+2013-06-24 19:03:18,631 - DEBUG: createBaobei visitIdx(2): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.9.yj005q&id=17234868278&scene=taobao_shop
+
+2013-06-24 19:03:18,631 - DEBUG: mainIE waitBusy before setForeground: 0
+2013-06-24 19:03:18,713 - ERROR: Traceback (most recent call last):
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 302, in <module>
+    hasUnvisit = view_3_baobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 257, in view_3_baobei
+    mainIE.setForeground()
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 206, in setForeground
+    ctypes.windll.user32.SetForegroundWindow(self.getIEHandle())
+NameError: global name 'ctypes' is not defined
+
+2013-06-24 19:03:22,352 - DEBUG: len(ies): 4
+2013-06-24 19:03:22,361 - DEBUG: ie.LocationURL: file:///G:/WorkStation/GitAutoVerify
+2013-06-24 19:03:22,430 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w31-18405562885.9.yj005q&id=12935068038
+2013-06-24 19:03:22,446 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w31-18405562885.9.yj005q&id=12935068038
+2013-06-24 19:03:23,631 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+2013-06-24 19:03:23,632 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+2013-06-24 19:03:25,239 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.9.yj005q&id=17234868278&scene=taobao_shop
+2013-06-24 19:03:25,249 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.9.yj005q&id=17234868278&scene=taobao_shop
+2013-06-24 20:22:00,269 - DEBUG: ===============================================Begin Log===============================================
+2013-06-24 20:22:00,299 - DEBUG: 
+
+
+2013-06-24 20:22:00,299 - DEBUG: batIdx: 0
+2013-06-24 20:22:00,322 - DEBUG: numUnvisit: 6, self.numBaobei: 3
+2013-06-24 20:22:00,322 - DEBUG: self.randomVisit: [1, 2, 4]
+2013-06-24 20:22:02,601 - DEBUG: createBaobei visitIdx(0): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+
+2013-06-24 20:22:04,881 - DEBUG: createBaobei visitIdx(1): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+
+2013-06-24 20:22:09,286 - DEBUG: createBaobei visitIdx(2): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+
+2013-06-24 20:22:09,286 - DEBUG: mainIE waitBusy before setForeground: 0
+2013-06-24 20:22:11,783 - ERROR: Traceback (most recent call last):
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 302, in <module>
+    hasUnvisit = view_3_baobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 257, in view_3_baobei
+    mainIE.setForeground()
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 207, in setForeground
+    ctypes.windll.user32.SetForegroundWindow(self.getIEHandle())
+NameError: global name 'ctypes' is not defined
+
+2013-06-24 20:22:12,914 - DEBUG: len(ies): 4
+2013-06-24 20:22:12,927 - DEBUG: ie.LocationURL: file:///G:/WorkStation/GitAutoVerify
+2013-06-24 20:22:12,967 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+2013-06-24 20:22:12,969 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+2013-06-24 20:22:14,032 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+2013-06-24 20:22:14,036 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+2013-06-24 20:22:15,088 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+2013-06-24 20:22:15,089 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+2013-06-24 20:23:21,573 - DEBUG: ===============================================Begin Log===============================================
+2013-06-24 20:23:21,575 - DEBUG: 
+
+
+2013-06-24 20:23:21,575 - DEBUG: batIdx: 0
+2013-06-24 20:23:21,575 - DEBUG: numUnvisit: 6, self.numBaobei: 3
+2013-06-24 20:23:21,575 - DEBUG: self.randomVisit: [1, 4, 0]
+2013-06-24 20:23:24,029 - DEBUG: createBaobei visitIdx(0): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+
+2013-06-24 20:23:26,661 - DEBUG: createBaobei visitIdx(1): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+
+2013-06-24 20:23:29,556 - DEBUG: createBaobei visitIdx(2): http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
+
+2013-06-24 20:23:29,556 - DEBUG: mainIE waitBusy before setForeground: 0
+2013-06-24 20:23:31,121 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 918838
+2013-06-24 20:23:31,641 - ERROR: Traceback (most recent call last):
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 302, in <module>
+    hasUnvisit = view_3_baobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 258, in view_3_baobei
+    mainIE.resizeMax()
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 213, in resizeMax
+    ctypes.windll.user32.SendMessage(self.getIEHandle(), WM_SYSCOMMAND, SC_MAXIMIZE, 0)
+  File "C:\Python27\lib\ctypes\__init__.py", line 378, in __getattr__
+    func = self.__getitem__(name)
+  File "C:\Python27\lib\ctypes\__init__.py", line 383, in __getitem__
+    func = self._FuncPtr((name_or_ordinal, self))
+AttributeError: function 'SendMessage' not found
+
+2013-06-24 20:23:33,637 - DEBUG: len(ies): 4
+2013-06-24 20:23:33,642 - DEBUG: ie.LocationURL: file:///G:/WorkStation/GitAutoVerify
+2013-06-24 20:23:33,650 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+2013-06-24 20:23:33,651 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+2013-06-24 20:23:34,670 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+2013-06-24 20:23:34,671 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+2013-06-24 20:23:35,701 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
+2013-06-24 20:23:35,703 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
+2013-06-24 20:28:15,187 - DEBUG: ===============================================Begin Log===============================================
+2013-06-24 20:28:15,187 - DEBUG: 
+
+
+2013-06-24 20:28:15,188 - DEBUG: batIdx: 0
+2013-06-24 20:28:15,188 - DEBUG: numUnvisit: 6, self.numBaobei: 3
+2013-06-24 20:28:15,190 - DEBUG: self.randomVisit: [2, 4, 5]
+2013-06-24 20:28:17,526 - DEBUG: createBaobei visitIdx(0): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+
+2013-06-24 20:28:21,450 - DEBUG: createBaobei visitIdx(1): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+
+2013-06-24 20:28:25,346 - DEBUG: createBaobei visitIdx(2): http://detail.tmall.com/item.htm?spm=a220o.1000855.w31-18405562885.9.yj005q&id=12935068038
+2013-06-24 20:28:25,346 - DEBUG: mainIE waitBusy before setForeground: 0
+2013-06-24 20:28:25,490 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 656318
+2013-06-24 20:28:25,654 - ERROR: Traceback (most recent call last):
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 302, in <module>
+    hasUnvisit = view_3_baobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 258, in view_3_baobei
+    mainIE.resizeMax()
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 214, in resizeMax
+    win32api.SendMessage(self.getIEHandle(), WM_SYSCOMMAND, SC_MAXIMIZE, 0)
+NameError: global name 'win32api' is not defined
+
+2013-06-24 20:28:28,778 - DEBUG: len(ies): 5
+2013-06-24 20:28:28,785 - DEBUG: ie.LocationURL: file:///G:/WorkStation/GitAutoVerify
+2013-06-24 20:28:28,862 - DEBUG: ie.LocationURL: http://wei.sohu.com/s2012/wei/?20130624&g=0.493#event:documentComplete
+2013-06-24 20:28:28,868 - DEBUG: closeAllRunningIE: http://wei.sohu.com/s2012/wei/?20130624&g=0.493#event:documentComplete
+2013-06-24 20:28:28,878 - ERROR: closeAllRunningIE exception
+2013-06-24 20:28:28,878 - ERROR: Traceback (most recent call last):
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 35, in closeAllRunningIE
+    ie.quit()
+  File "<COMObject <unknown>>", line 2, in quit
+com_error: (-2147352567, '\xb7\xa2\xc9\xfa\xd2\xe2\xcd\xe2\xa1\xa3', (0, None, None, None, 0, -2147467259), None)
+
+2013-06-24 20:40:31,609 - DEBUG: ===============================================Begin Log===============================================
+2013-06-24 20:40:31,611 - DEBUG: 
+
+
+2013-06-24 20:40:31,611 - DEBUG: batIdx: 0
+2013-06-24 20:40:31,611 - DEBUG: numUnvisit: 6, self.numBaobei: 3
+2013-06-24 20:40:31,611 - DEBUG: self.randomVisit: [1, 0, 2]
+2013-06-24 20:40:33,732 - DEBUG: createBaobei visitIdx(0): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+
+2013-06-24 20:40:37,207 - DEBUG: createBaobei visitIdx(1): http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
+
+2013-06-24 20:40:42,546 - DEBUG: createBaobei visitIdx(2): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+
+2013-06-24 20:40:42,548 - DEBUG: mainIE waitBusy before setForeground: 0
+2013-06-24 20:40:42,887 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 263582
+2013-06-24 20:40:43,263 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 263582
+2013-06-24 20:40:44,345 - DEBUG: openCurBaobei
+2013-06-24 20:40:48,549 - DEBUG: subIdx: 0, url: http://detail.tmall.com/item.htm?spm=a1z10.4.w3-18405562852.16.v1lnCC&id=25466108570&bucket_id=19&scene=taobao_shop&scene=taobao_shop
+2013-06-24 20:40:48,549 - DEBUG: come back to mainIE waitBusy before setForeground: 
+2013-06-24 20:40:48,556 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 263582
+2013-06-24 20:40:48,565 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 263582
+2013-06-24 20:40:48,568 - DEBUG: come back to mainIE waitBusy after setForeground: 
+2013-06-24 20:40:48,569 - DEBUG: self.mainIE.scrollToNode
+2013-06-24 20:40:56,924 - ERROR: Traceback (most recent call last):
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 302, in <module>
+    hasUnvisit = view_3_baobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 264, in view_3_baobei
+    baobei.openCurBaobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 109, in openCurBaobei
+    self.mainIE.scrollToNode(subNode)
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 248, in scrollToNode
+    while self.waitBusy(IE_TIME_OUT_SCROLL)==True:
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 180, in waitBusy
+    if self.isBusy():
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 233, in isBusy
+    return self.ie.Busy
+  File "C:\Python27\lib\site-packages\win32com\client\dynamic.py", line 511, in __getattr__
+    ret = self._oleobj_.Invoke(retEntry.dispid,0,invoke_type,1)
+com_error: (-2147417848, '\xb1\xbb\xb5\xf7\xd3\xc3\xb5\xc4\xb6\xd4\xcf\xf3\xd2\xd1\xd3\xeb\xc6\xe4\xbf\xcd\xbb\xa7\xb6\xcb\xb6\xcf\xbf\xaa\xc1\xac\xbd\xd3\xa1\xa3', None, None)
+
+2013-06-24 20:40:56,947 - DEBUG: len(ies): 3
+2013-06-24 20:40:56,953 - DEBUG: ie.LocationURL: file:///G:/WorkStation/GitAutoVerify
+2013-06-24 20:40:56,957 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
+2013-06-24 20:40:56,960 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
+2013-06-24 20:40:57,973 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+2013-06-24 20:40:57,974 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+2013-06-24 20:49:08,456 - DEBUG: ===============================================Begin Log===============================================
+2013-06-24 20:49:08,457 - DEBUG: 
+
+
+2013-06-24 20:49:08,457 - DEBUG: batIdx: 0
+2013-06-24 20:49:08,457 - DEBUG: numUnvisit: 6, self.numBaobei: 3
+2013-06-24 20:49:08,457 - DEBUG: self.randomVisit: [5, 1, 2]
+2013-06-24 20:49:08,573 - ERROR: Traceback (most recent call last):
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 302, in <module>
+    hasUnvisit = view_3_baobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 245, in view_3_baobei
+    viewer.createBaobei(idx)
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 195, in createBaobei
+    ieExplorer.openURL(url)
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 135, in openURL
+    self.newIE(url)
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 129, in newIE
+    self.ie = win32com.client.Dispatch("InternetExplorer.Application")
+  File "C:\Python27\lib\site-packages\win32com\client\__init__.py", line 95, in Dispatch
+    dispatch, userName = dynamic._GetGoodDispatchAndUserName(dispatch,userName,clsctx)
+  File "C:\Python27\lib\site-packages\win32com\client\dynamic.py", line 114, in _GetGoodDispatchAndUserName
+    return (_GetGoodDispatch(IDispatch, clsctx), userName)
+  File "C:\Python27\lib\site-packages\win32com\client\dynamic.py", line 91, in _GetGoodDispatch
+    IDispatch = pythoncom.CoCreateInstance(IDispatch, None, clsctx, pythoncom.IID_IDispatch)
+com_error: (-2147023706, '\xd2\xd1\xbe\xad\xbc\xc6\xbb\xae\xcf\xb5\xcd\xb3\xb9\xd8\xbb\xfa\xa1\xa3', None, None)
+
+2013-06-24 20:49:08,595 - DEBUG: len(ies): 1
+2013-06-24 20:49:08,602 - DEBUG: ie.LocationURL: file:///G:/WorkStation/GitAutoVerify
+2013-06-24 20:50:42,003 - DEBUG: ===============================================Begin Log===============================================
+2013-06-24 20:50:42,005 - DEBUG: 
+
+
+2013-06-24 20:50:42,006 - DEBUG: batIdx: 0
+2013-06-24 20:50:42,006 - DEBUG: numUnvisit: 6, self.numBaobei: 3
+2013-06-24 20:50:42,006 - DEBUG: self.randomVisit: [1, 2, 4]
+2013-06-24 20:50:44,016 - DEBUG: createBaobei visitIdx(0): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+
+2013-06-24 20:50:45,543 - DEBUG: createBaobei visitIdx(1): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+
+2013-06-24 20:50:50,329 - DEBUG: createBaobei visitIdx(2): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+
+2013-06-24 20:50:50,331 - DEBUG: mainIE waitBusy before setForeground: 0
+2013-06-24 20:50:50,628 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 984724
+2013-06-24 20:50:50,908 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 984724
+2013-06-24 20:50:52,072 - DEBUG: openCurBaobei
+2013-06-24 20:50:57,079 - DEBUG: subIdx: 0, url: http://detail.tmall.com/item.htm?spm=a1z10.4.w3-18449998307.3.QUuzeC&id=17470118880&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+2013-06-24 20:50:57,082 - DEBUG: come back to mainIE waitBusy before setForeground: 
+2013-06-24 20:50:57,098 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 984724
+2013-06-24 20:50:57,115 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 984724
+2013-06-24 20:50:57,125 - DEBUG: come back to mainIE waitBusy after setForeground: 
+2013-06-24 20:50:57,127 - DEBUG: self.mainIE.scrollToNode
+2013-06-24 20:51:23,845 - DEBUG: self.createNewSubIE
+2013-06-24 20:51:24,552 - DEBUG: subIE.stayInSubPage
+2013-06-24 20:51:35,483 - DEBUG: subIdx: 1, url: http://detail.tmall.com/item.htm?spm=a1z10.4.w3-18405562852.16.v1lnCC&id=25466108570&bucket_id=19&scene=taobao_shop&scene=taobao_shop
+2013-06-24 20:51:35,483 - DEBUG: come back to mainIE waitBusy before setForeground: 
+2013-06-24 20:51:35,493 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 984724
+2013-06-24 20:51:35,625 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 984724
+2013-06-24 20:51:35,631 - DEBUG: come back to mainIE waitBusy after setForeground: 
+2013-06-24 20:51:35,632 - DEBUG: self.mainIE.scrollToNode
+2013-06-24 20:51:38,676 - DEBUG: self.createNewSubIE
+2013-06-24 20:51:40,703 - DEBUG: subIE.stayInSubPage
+2013-06-24 20:51:50,479 - DEBUG: mainIE waitBusy before setForeground: 1
+2013-06-24 20:51:50,493 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 1639404
+2013-06-24 20:51:50,595 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 1639404
+2013-06-24 20:51:52,296 - DEBUG: openCurBaobei
+2013-06-24 20:51:54,704 - DEBUG: subIdx: 0, url: http://detail.taobao.com/meal_detail.htm?spm=2013.1.0.0.RHYwpl&meal_id=32424102&seller_id=545729027
+2013-06-24 20:51:54,706 - DEBUG: come back to mainIE waitBusy before setForeground: 
+2013-06-24 20:51:54,713 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 1639404
+2013-06-24 20:51:54,723 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 1639404
+2013-06-24 20:51:54,727 - DEBUG: come back to mainIE waitBusy after setForeground: 
+2013-06-24 20:51:54,729 - DEBUG: self.mainIE.scrollToNode
+2013-06-24 20:52:03,095 - DEBUG: waitBusy: True
+2013-06-24 20:52:19,454 - DEBUG: self.createNewSubIE
+2013-06-24 20:52:20,372 - DEBUG: subIE.stayInSubPage
+2013-06-24 20:52:32,381 - DEBUG: subIdx: 1, url: http://detail.tmall.com/item.htm?id=20204084470
+2013-06-24 20:52:32,381 - DEBUG: come back to mainIE waitBusy before setForeground: 
+2013-06-24 20:52:32,400 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 1639404
+2013-06-24 20:52:32,533 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 1639404
+2013-06-24 20:52:32,536 - DEBUG: come back to mainIE waitBusy after setForeground: 
+2013-06-24 20:52:32,538 - DEBUG: self.mainIE.scrollToNode
+2013-06-24 20:52:37,982 - DEBUG: waitBusy: True
+2013-06-24 20:52:58,493 - DEBUG: self.createNewSubIE
+2013-06-24 20:52:59,322 - DEBUG: subIE.stayInSubPage
+2013-06-24 20:53:07,072 - ERROR: Traceback (most recent call last):
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 302, in <module>
+    hasUnvisit = view_3_baobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 264, in view_3_baobei
+    baobei.openCurBaobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 122, in openCurBaobei
+    subIE.stayInSubPage(timeOut)
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 264, in stayInSubPage
+    while self.waitBusy(IE_TIME_OUT_SCROLL)==True:
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 180, in waitBusy
+    if self.isBusy():
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 233, in isBusy
+    return self.ie.Busy
+  File "C:\Python27\lib\site-packages\win32com\client\dynamic.py", line 511, in __getattr__
+    ret = self._oleobj_.Invoke(retEntry.dispid,0,invoke_type,1)
+com_error: (-2147417848, '\xb1\xbb\xb5\xf7\xd3\xc3\xb5\xc4\xb6\xd4\xcf\xf3\xd2\xd1\xd3\xeb\xc6\xe4\xbf\xcd\xbb\xa7\xb6\xcb\xb6\xcf\xbf\xaa\xc1\xac\xbd\xd3\xa1\xa3', None, None)
+
+2013-06-24 20:53:07,140 - DEBUG: len(ies): 8
+2013-06-24 20:53:07,144 - DEBUG: ie.LocationURL: file:///G:/WorkStation/GitAutoVerify
+2013-06-24 20:53:07,148 - DEBUG: ie.LocationURL: about:blank
+2013-06-24 20:53:07,151 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+2013-06-24 20:53:07,153 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+2013-06-24 20:53:08,167 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+2013-06-24 20:53:08,171 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+2013-06-24 20:53:09,184 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+2013-06-24 20:53:09,187 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+2013-06-24 20:53:10,200 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a1z10.4.w3-18449998307.3.QUuzeC&id=17470118880&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+2013-06-24 20:53:10,203 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a1z10.4.w3-18449998307.3.QUuzeC&id=17470118880&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+2013-06-24 20:53:11,217 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a1z10.4.w3-18405562852.16.v1lnCC&id=25466108570&bucket_id=19&scene=taobao_shop&scene=taobao_shop
+2013-06-24 20:53:11,219 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a1z10.4.w3-18405562852.16.v1lnCC&id=25466108570&bucket_id=19&scene=taobao_shop&scene=taobao_shop
+2013-06-24 20:53:12,233 - DEBUG: ie.LocationURL: http://detail.taobao.com/meal_detail.htm?spm=2013.1.0.0.RHYwpl&meal_id=32424102&seller_id=545729027
+2013-06-24 20:53:12,236 - DEBUG: closeAllRunningIE: http://detail.taobao.com/meal_detail.htm?spm=2013.1.0.0.RHYwpl&meal_id=32424102&seller_id=545729027
+2013-06-24 21:02:07,013 - DEBUG: ===============================================Begin Log===============================================
+2013-06-24 21:02:07,046 - DEBUG: 
+
+
+2013-06-24 21:02:07,046 - DEBUG: batIdx: 0
+2013-06-24 21:02:07,069 - DEBUG: numUnvisit: 6, self.numBaobei: 3
+2013-06-24 21:02:07,069 - DEBUG: self.randomVisit: [2, 0, 4]
+2013-06-24 21:02:09,654 - DEBUG: createBaobei visitIdx(0): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+
+2013-06-24 21:02:11,036 - DEBUG: createBaobei visitIdx(1): http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
+
+2013-06-24 21:02:12,563 - DEBUG: createBaobei visitIdx(2): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+
+2013-06-24 21:02:30,858 - DEBUG: mainIE waitBusy before setForeground: 0
+2013-06-24 21:02:30,874 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 198550
+2013-06-24 21:02:31,085 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 198550
+2013-06-24 21:02:31,671 - DEBUG: openCurBaobei
+2013-06-24 21:02:33,734 - ERROR: Traceback (most recent call last):
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 316, in <module>
+    hasUnvisit = view_3_baobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 280, in view_3_baobei
+    baobei.openCurBaobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 91, in openCurBaobei
+    self.getImgHrefNodes()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 49, in getImgHrefNodes
+    if nodeParent.tagName==u"a" or nodeParent.tagName==u"A":
+  File "C:\Python27\lib\site-packages\win32com\client\dynamic.py", line 511, in __getattr__
+    ret = self._oleobj_.Invoke(retEntry.dispid,0,invoke_type,1)
+com_error: (-2147024891, '\xbe\xdc\xbe\xf8\xb7\xc3\xce\xca\xa1\xa3', None, None)
+
+2013-06-24 21:02:33,828 - DEBUG: len(ies): 4
+2013-06-24 21:02:33,832 - DEBUG: ie.LocationURL: file:///G:/WorkStation/GitAutoVerify
+2013-06-24 21:02:33,861 - DEBUG: ie.LocationURL: about:blank
+2013-06-24 21:02:33,864 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
+2013-06-24 21:02:33,865 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
+2013-06-24 21:02:34,875 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+2013-06-24 21:02:34,878 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+2013-06-24 21:04:14,114 - DEBUG: ===============================================Begin Log===============================================
+2013-06-24 21:04:14,115 - DEBUG: 
+
+
+2013-06-24 21:04:14,115 - DEBUG: batIdx: 0
+2013-06-24 21:04:14,115 - DEBUG: numUnvisit: 6, self.numBaobei: 3
+2013-06-24 21:04:14,115 - DEBUG: self.randomVisit: [4, 3, 0]
+2013-06-24 21:04:15,690 - DEBUG: createBaobei visitIdx(0): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+
+2013-06-24 21:04:16,552 - DEBUG: createBaobei visitIdx(1): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.9.yj005q&id=17234868278&scene=taobao_shop
+
+2013-06-24 21:04:21,181 - DEBUG: createBaobei visitIdx(2): http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
+
+2013-06-24 21:04:21,345 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 1574330
+2013-06-24 21:04:40,588 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 198414
+2013-06-24 21:04:44,944 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 264064
+2013-06-24 21:04:49,956 - DEBUG: mainIE waitBusy before setForeground: 0
+2013-06-24 21:04:49,963 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 1574330
+2013-06-24 21:04:50,078 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 1574330
+2013-06-24 21:04:50,710 - DEBUG: openCurBaobei
+2013-06-24 21:04:51,513 - DEBUG: subIdx: 0, url: http://detail.taobao.com/meal_detail.htm?spm=0.0.0.0.dwCGTg&meal_id=38516222&seller_id=545729027&scene=taobao_shop
+2013-06-24 21:04:51,515 - DEBUG: come back to mainIE waitBusy before setForeground: 
+2013-06-24 21:04:51,520 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 1574330
+2013-06-24 21:04:51,529 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 1574330
+2013-06-24 21:04:51,532 - DEBUG: come back to mainIE waitBusy after setForeground: 
+2013-06-24 21:04:51,532 - DEBUG: self.mainIE.scrollToNode
+2013-06-24 21:05:05,890 - ERROR: Traceback (most recent call last):
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 321, in <module>
+    hasUnvisit = view_3_baobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 285, in view_3_baobei
+    baobei.openCurBaobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 123, in openCurBaobei
+    self.mainIE.scrollToNode(subNode)
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 253, in scrollToNode
+    if isNodeInScreen(node, self)==True:
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 91, in isNodeInScreen
+    clientHeight = ie.getClientHeight()
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 240, in getClientHeight
+    return self.ie.Document.documentElement.clientHeight
+  File "C:\Python27\lib\site-packages\win32com\client\dynamic.py", line 511, in __getattr__
+    ret = self._oleobj_.Invoke(retEntry.dispid,0,invoke_type,1)
+com_error: (-2147352567, '\xb7\xa2\xc9\xfa\xd2\xe2\xcd\xe2\xa1\xa3', (0, None, None, None, 0, -2146828218), None)
+
+2013-06-24 21:05:06,015 - DEBUG: len(ies): 4
+2013-06-24 21:05:06,016 - DEBUG: ie.LocationURL: file:///G:/WorkStation/GitAutoVerify
+2013-06-24 21:05:06,019 - DEBUG: ie.LocationURL: about:blank
+2013-06-24 21:05:06,023 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.9.yj005q&id=17234868278&scene=taobao_shop
+2013-06-24 21:05:06,025 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.9.yj005q&id=17234868278&scene=taobao_shop
+2013-06-24 21:05:07,061 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
+2013-06-24 21:05:07,062 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
+2013-06-24 21:05:48,941 - DEBUG: ===============================================Begin Log===============================================
+2013-06-24 21:05:48,943 - DEBUG: 
+
+
+2013-06-24 21:05:48,943 - DEBUG: batIdx: 0
+2013-06-24 21:05:48,943 - DEBUG: numUnvisit: 6, self.numBaobei: 3
+2013-06-24 21:05:48,944 - DEBUG: self.randomVisit: [2, 1, 5]
+2013-06-24 21:05:49,667 - DEBUG: createBaobei visitIdx(0): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+
+2013-06-24 21:05:51,605 - DEBUG: createBaobei visitIdx(1): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+
+2013-06-24 21:05:55,201 - DEBUG: createBaobei visitIdx(2): http://detail.tmall.com/item.htm?spm=a220o.1000855.w31-18405562885.9.yj005q&id=12935068038
+2013-06-24 21:05:56,956 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 7669556
+2013-06-24 21:06:00,563 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 264248
+2013-06-24 21:06:03,808 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 329626
+2013-06-24 21:06:08,664 - DEBUG: waitBusy: True
+2013-06-24 21:06:09,016 - DEBUG: mainIE waitBusy before setForeground: 0
+2013-06-24 21:06:09,025 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 7669556
+2013-06-24 21:06:09,075 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 7669556
+2013-06-24 21:06:09,851 - DEBUG: openCurBaobei
+2013-06-24 21:06:11,749 - DEBUG: subIdx: 0, url: http://detail.tmall.com/item.htm?id=23379028631
+2013-06-24 21:06:11,750 - DEBUG: come back to mainIE waitBusy before setForeground: 
+2013-06-24 21:06:11,756 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 7669556
+2013-06-24 21:06:11,763 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 7669556
+2013-06-24 21:06:11,769 - DEBUG: come back to mainIE waitBusy after setForeground: 
+2013-06-24 21:06:11,772 - DEBUG: self.mainIE.scrollToNode
+2013-06-24 21:06:31,867 - ERROR: Traceback (most recent call last):
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 321, in <module>
+    hasUnvisit = view_3_baobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 285, in view_3_baobei
+    baobei.openCurBaobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 123, in openCurBaobei
+    self.mainIE.scrollToNode(subNode)
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 253, in scrollToNode
+    if isNodeInScreen(node, self)==True:
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 91, in isNodeInScreen
+    clientHeight = ie.getClientHeight()
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 240, in getClientHeight
+    return self.ie.Document.documentElement.clientHeight
+  File "C:\Python27\lib\site-packages\win32com\client\dynamic.py", line 511, in __getattr__
+    ret = self._oleobj_.Invoke(retEntry.dispid,0,invoke_type,1)
+com_error: (-2147352567, '\xb7\xa2\xc9\xfa\xd2\xe2\xcd\xe2\xa1\xa3', (0, None, None, None, 0, -2146828218), None)
+
+2013-06-24 21:06:32,023 - DEBUG: len(ies): 4
+2013-06-24 21:06:32,028 - DEBUG: ie.LocationURL: file:///G:/WorkStation/GitAutoVerify
+2013-06-24 21:06:32,032 - DEBUG: ie.LocationURL: about:blank
+2013-06-24 21:06:32,036 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+2013-06-24 21:06:32,038 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+2013-06-24 21:06:33,048 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w31-18405562885.9.yj005q&id=12935068038
+2013-06-24 21:06:33,049 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w31-18405562885.9.yj005q&id=12935068038
+2013-06-24 21:06:47,673 - DEBUG: ===============================================Begin Log===============================================
+2013-06-24 21:06:47,674 - DEBUG: 
+
+
+2013-06-24 21:06:47,674 - DEBUG: batIdx: 0
+2013-06-24 21:06:47,674 - DEBUG: numUnvisit: 6, self.numBaobei: 3
+2013-06-24 21:06:47,674 - DEBUG: self.randomVisit: [2, 3, 1]
+2013-06-24 21:06:48,446 - DEBUG: createBaobei visitIdx(0): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+
+2013-06-24 21:06:50,141 - DEBUG: createBaobei visitIdx(1): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.9.yj005q&id=17234868278&scene=taobao_shop
+
+2013-06-24 21:06:55,644 - DEBUG: createBaobei visitIdx(2): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+
+2013-06-24 21:06:55,982 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 395038
+2013-06-24 21:07:00,536 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 329464
+2013-06-24 21:07:07,257 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 395270
+2013-06-24 21:07:14,424 - DEBUG: waitBusy: True
+2013-06-24 21:07:14,898 - DEBUG: mainIE waitBusy before setForeground: 0
+2013-06-24 21:07:14,907 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 395038
+2013-06-24 21:07:14,944 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 395038
+2013-06-24 21:07:15,411 - DEBUG: openCurBaobei
+2013-06-24 21:07:16,957 - DEBUG: subIdx: 0, url: http://detail.tmall.com/item.htm?id=12935068038
+2013-06-24 21:07:16,959 - DEBUG: come back to mainIE waitBusy before setForeground: 
+2013-06-24 21:07:16,963 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 395038
+2013-06-24 21:07:16,970 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 395038
+2013-06-24 21:07:16,973 - DEBUG: come back to mainIE waitBusy after setForeground: 
+2013-06-24 21:07:16,973 - DEBUG: self.mainIE.scrollToNode
+2013-06-24 21:07:30,019 - ERROR: Traceback (most recent call last):
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 321, in <module>
+    hasUnvisit = view_3_baobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 285, in view_3_baobei
+    baobei.openCurBaobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 123, in openCurBaobei
+    self.mainIE.scrollToNode(subNode)
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 253, in scrollToNode
+    if isNodeInScreen(node, self)==True:
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 91, in isNodeInScreen
+    clientHeight = ie.getClientHeight()
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 240, in getClientHeight
+    return self.ie.Document.documentElement.clientHeight
+  File "C:\Python27\lib\site-packages\win32com\client\dynamic.py", line 511, in __getattr__
+    ret = self._oleobj_.Invoke(retEntry.dispid,0,invoke_type,1)
+com_error: (-2147024891, '\xbe\xdc\xbe\xf8\xb7\xc3\xce\xca\xa1\xa3', None, None)
+
+2013-06-24 21:07:30,095 - DEBUG: len(ies): 4
+2013-06-24 21:07:30,099 - DEBUG: ie.LocationURL: file:///G:/WorkStation/GitAutoVerify
+2013-06-24 21:07:30,105 - DEBUG: ie.LocationURL: about:blank
+2013-06-24 21:07:30,117 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.9.yj005q&id=17234868278&scene=taobao_shop
+2013-06-24 21:07:30,118 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.9.yj005q&id=17234868278&scene=taobao_shop
+2013-06-24 21:07:31,130 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+2013-06-24 21:07:31,131 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+2013-06-24 21:08:50,112 - DEBUG: ===============================================Begin Log===============================================
+2013-06-24 21:08:50,114 - DEBUG: 
+
+
+2013-06-24 21:08:50,114 - DEBUG: batIdx: 0
+2013-06-24 21:08:50,115 - DEBUG: numUnvisit: 6, self.numBaobei: 3
+2013-06-24 21:08:50,115 - DEBUG: self.randomVisit: [1, 3, 2]
+2013-06-24 21:08:51,614 - DEBUG: createBaobei visitIdx(0): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+
+2013-06-24 21:08:53,562 - DEBUG: createBaobei visitIdx(1): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.9.yj005q&id=17234868278&scene=taobao_shop
+
+2013-06-24 21:08:55,098 - DEBUG: createBaobei visitIdx(2): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+
+2013-06-24 21:08:55,098 - DEBUG: baobeiSrcollBeg: 0
+2013-06-24 21:08:56,401 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 395130
+2013-06-24 21:09:01,523 - DEBUG: baobeiSrcollBeg: 1
+2013-06-24 21:09:02,095 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 1443826
+2013-06-24 21:09:05,744 - DEBUG: baobeiSrcollBeg: 2
+2013-06-24 21:09:05,755 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 395134
+2013-06-24 21:09:13,872 - DEBUG: mainIE waitBusy before setForeground: 0
+2013-06-24 21:09:13,882 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 395130
+2013-06-24 21:09:14,092 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 395130
+2013-06-24 21:09:14,727 - DEBUG: openCurBaobei
+2013-06-24 21:09:16,048 - DEBUG: subIdx: 0, url: http://detail.tmall.com/item.htm?id=15073367136
+2013-06-24 21:09:16,049 - DEBUG: come back to mainIE waitBusy before setForeground: 
+2013-06-24 21:09:16,071 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 395130
+2013-06-24 21:09:16,125 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 395130
+2013-06-24 21:09:16,144 - DEBUG: come back to mainIE waitBusy after setForeground: 
+2013-06-24 21:09:16,144 - DEBUG: self.mainIE.scrollToNode
+2013-06-24 21:09:21,719 - ERROR: Traceback (most recent call last):
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 323, in <module>
+    hasUnvisit = view_3_baobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 287, in view_3_baobei
+    baobei.openCurBaobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 123, in openCurBaobei
+    self.mainIE.scrollToNode(subNode)
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 248, in scrollToNode
+    while self.waitBusy(IE_TIME_OUT_SCROLL)==True:
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 180, in waitBusy
+    if self.isBusy():
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 233, in isBusy
+    return self.ie.Busy
+  File "C:\Python27\lib\site-packages\win32com\client\dynamic.py", line 511, in __getattr__
+    ret = self._oleobj_.Invoke(retEntry.dispid,0,invoke_type,1)
+com_error: (-2147417848, '\xb1\xbb\xb5\xf7\xd3\xc3\xb5\xc4\xb6\xd4\xcf\xf3\xd2\xd1\xd3\xeb\xc6\xe4\xbf\xcd\xbb\xa7\xb6\xcb\xb6\xcf\xbf\xaa\xc1\xac\xbd\xd3\xa1\xa3', None, None)
+
+2013-06-24 21:09:21,749 - DEBUG: len(ies): 4
+2013-06-24 21:09:21,753 - DEBUG: ie.LocationURL: file:///G:/WorkStation/GitAutoVerify
+2013-06-24 21:09:21,756 - DEBUG: ie.LocationURL: about:blank
+2013-06-24 21:09:21,760 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.9.yj005q&id=17234868278&scene=taobao_shop
+2013-06-24 21:09:21,762 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.9.yj005q&id=17234868278&scene=taobao_shop
+2013-06-24 21:09:22,773 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+2013-06-24 21:09:22,775 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+2013-06-24 21:09:59,404 - DEBUG: ===============================================Begin Log===============================================
+2013-06-24 21:09:59,404 - DEBUG: 
+
+
+2013-06-24 21:09:59,405 - DEBUG: batIdx: 0
+2013-06-24 21:09:59,407 - DEBUG: numUnvisit: 6, self.numBaobei: 3
+2013-06-24 21:09:59,407 - DEBUG: self.randomVisit: [4, 5, 1]
+2013-06-24 21:10:00,207 - DEBUG: createBaobei visitIdx(0): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+
+2013-06-24 21:10:01,684 - DEBUG: createBaobei visitIdx(1): http://detail.tmall.com/item.htm?spm=a220o.1000855.w31-18405562885.9.yj005q&id=12935068038
+2013-06-24 21:10:05,256 - DEBUG: createBaobei visitIdx(2): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+
+2013-06-24 21:10:05,257 - DEBUG: baobeiSrcollBeg: 0
+2013-06-24 21:10:07,158 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 526346
+2013-06-24 21:10:13,088 - DEBUG: baobeiSrcollBeg: 1
+2013-06-24 21:10:13,176 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 460732
+2013-06-24 21:10:17,335 - DEBUG: baobeiSrcollBeg: 2
+2013-06-24 21:10:17,380 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 1705832
+2013-06-24 21:10:25,592 - DEBUG: mainIE waitBusy before setForeground: 0
+2013-06-24 21:10:25,604 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 526346
+2013-06-24 21:10:25,710 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 526346
+2013-06-24 21:10:26,098 - DEBUG: openCurBaobei
+2013-06-24 21:10:27,309 - DEBUG: subIdx: 0, url: http://detail.tmall.com/item.htm?spm=a1z10.4.w3-18449998307.3.QUuzeC&id=17470118880&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+2013-06-24 21:10:27,309 - DEBUG: come back to mainIE waitBusy before setForeground: 
+2013-06-24 21:10:27,315 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 526346
+2013-06-24 21:10:27,322 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 526346
+2013-06-24 21:10:27,325 - DEBUG: come back to mainIE waitBusy after setForeground: 
+2013-06-24 21:10:27,326 - DEBUG: self.mainIE.scrollToNode
+2013-06-24 21:10:35,278 - ERROR: Traceback (most recent call last):
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 324, in <module>
+    hasUnvisit = view_3_baobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 288, in view_3_baobei
+    baobei.openCurBaobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 124, in openCurBaobei
+    self.mainIE.scrollToNode(subNode)
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 253, in scrollToNode
+    if isNodeInScreen(node, self)==True:
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 91, in isNodeInScreen
+    clientHeight = ie.getClientHeight()
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 240, in getClientHeight
+    return self.ie.Document.documentElement.clientHeight
+  File "C:\Python27\lib\site-packages\win32com\client\dynamic.py", line 511, in __getattr__
+    ret = self._oleobj_.Invoke(retEntry.dispid,0,invoke_type,1)
+com_error: (-2147352567, '\xb7\xa2\xc9\xfa\xd2\xe2\xcd\xe2\xa1\xa3', (0, None, None, None, 0, -2146828218), None)
+
+2013-06-24 21:10:35,384 - DEBUG: len(ies): 4
+2013-06-24 21:10:35,388 - DEBUG: ie.LocationURL: file:///G:/WorkStation/GitAutoVerify
+2013-06-24 21:10:35,391 - DEBUG: ie.LocationURL: about:blank
+2013-06-24 21:10:35,397 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w31-18405562885.9.yj005q&id=12935068038
+2013-06-24 21:10:35,398 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w31-18405562885.9.yj005q&id=12935068038
+2013-06-24 21:10:36,417 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+2013-06-24 21:10:36,418 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.2.KpoEeQ&id=25283284088&bucket_id=19&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop&scene=taobao_shop
+2013-06-24 21:11:15,308 - DEBUG: ===============================================Begin Log===============================================
+2013-06-24 21:11:15,309 - DEBUG: 
+
+
+2013-06-24 21:11:15,309 - DEBUG: batIdx: 0
+2013-06-24 21:11:15,309 - DEBUG: numUnvisit: 6, self.numBaobei: 3
+2013-06-24 21:11:15,309 - DEBUG: self.randomVisit: [3, 0, 4]
+2013-06-24 21:11:15,878 - DEBUG: createBaobei visitIdx(0): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.9.yj005q&id=17234868278&scene=taobao_shop
+
+2013-06-24 21:11:17,427 - DEBUG: createBaobei visitIdx(1): http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
+
+2013-06-24 21:11:21,066 - DEBUG: createBaobei visitIdx(2): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+
+2013-06-24 21:11:21,068 - DEBUG: baobeiSrcollBeg: 0
+2013-06-24 21:11:21,660 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 197368
+2013-06-24 21:11:28,055 - DEBUG: baobeiSrcollBeg: 1
+2013-06-24 21:11:28,112 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 722866
+2013-06-24 21:11:36,368 - DEBUG: waitBusy: True
+2013-06-24 21:11:37,135 - DEBUG: baobeiSrcollBeg: 2
+2013-06-24 21:11:37,154 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 1509222
+2013-06-24 21:11:41,677 - DEBUG: mainIE waitBusy before setForeground: 0
+2013-06-24 21:11:41,690 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 197368
+2013-06-24 21:11:41,994 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 197368
+2013-06-24 21:11:42,378 - DEBUG: openCurBaobei
+2013-06-24 21:11:44,658 - DEBUG: subIdx: 0, url: http://detail.tmall.com/item.htm?id=16245152121
+2013-06-24 21:11:44,660 - DEBUG: come back to mainIE waitBusy before setForeground: 
+2013-06-24 21:11:44,665 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 197368
+2013-06-24 21:11:45,677 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 197368
+2013-06-24 21:11:46,680 - DEBUG: come back to mainIE waitBusy after setForeground: 
+2013-06-24 21:11:46,683 - DEBUG: self.mainIE.scrollToNode
+2013-06-24 21:11:53,453 - DEBUG: waitBusy: True
+2013-06-24 21:11:59,463 - DEBUG: waitBusy: True
+2013-06-24 21:12:07,651 - DEBUG: waitBusy: True
+2013-06-24 21:12:21,885 - DEBUG: self.createNewSubIE
+2013-06-24 21:12:22,484 - DEBUG: subIE.stayInSubPage
+2013-06-24 21:12:30,841 - DEBUG: subIdx: 1, url: http://detail.tmall.com/item.htm?id=16641911848&bi_from=tm_comb
+2013-06-24 21:12:30,841 - DEBUG: come back to mainIE waitBusy before setForeground: 
+2013-06-24 21:12:30,851 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 197368
+2013-06-24 21:12:31,862 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 197368
+2013-06-24 21:12:32,865 - DEBUG: come back to mainIE waitBusy after setForeground: 
+2013-06-24 21:12:32,868 - DEBUG: self.mainIE.scrollToNode
+2013-06-24 21:12:52,756 - DEBUG: self.createNewSubIE
+2013-06-24 21:12:54,658 - DEBUG: subIE.stayInSubPage
+2013-06-24 21:13:01,621 - DEBUG: mainIE waitBusy before setForeground: 1
+2013-06-24 21:13:01,631 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 722866
+2013-06-24 21:13:01,664 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 722866
+2013-06-24 21:13:02,213 - DEBUG: openCurBaobei
+2013-06-24 21:13:04,812 - DEBUG: subIdx: 0, url: http://detail.tmall.com/item.htm?id=19863675393&&scene=taobao_shop
+2013-06-24 21:13:04,812 - DEBUG: come back to mainIE waitBusy before setForeground: 
+2013-06-24 21:13:04,818 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 722866
+2013-06-24 21:13:05,828 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 722866
+2013-06-24 21:13:06,832 - DEBUG: come back to mainIE waitBusy after setForeground: 
+2013-06-24 21:13:06,834 - DEBUG: self.mainIE.scrollToNode
+2013-06-24 21:13:11,865 - ERROR: Traceback (most recent call last):
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 326, in <module>
+    hasUnvisit = view_3_baobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 290, in view_3_baobei
+    baobei.openCurBaobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 126, in openCurBaobei
+    self.mainIE.scrollToNode(subNode)
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 248, in scrollToNode
+    while self.waitBusy(IE_TIME_OUT_SCROLL)==True:
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 180, in waitBusy
+    if self.isBusy():
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 233, in isBusy
+    return self.ie.Busy
+  File "C:\Python27\lib\site-packages\win32com\client\dynamic.py", line 511, in __getattr__
+    ret = self._oleobj_.Invoke(retEntry.dispid,0,invoke_type,1)
+com_error: (-2147352567, '\xb7\xa2\xc9\xfa\xd2\xe2\xcd\xe2\xa1\xa3', (0, None, None, None, 0, -2147467259), None)
+
+2013-06-24 21:13:11,891 - DEBUG: len(ies): 6
+2013-06-24 21:13:11,892 - DEBUG: ie.LocationURL: file:///G:/WorkStation/GitAutoVerify
+2013-06-24 21:13:11,897 - DEBUG: ie.LocationURL: about:blank
+2013-06-24 21:13:11,901 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.9.yj005q&id=17234868278&scene=taobao_shop
+2013-06-24 21:13:11,901 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.9.yj005q&id=17234868278&scene=taobao_shop
+2013-06-24 21:13:12,913 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+2013-06-24 21:13:12,914 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+2013-06-24 21:13:13,930 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?id=16245152121
+2013-06-24 21:13:13,933 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?id=16245152121
+2013-06-24 21:13:14,947 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?id=16641911848&bi_from=tm_comb
+2013-06-24 21:13:14,950 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?id=16641911848&bi_from=tm_comb
+2013-06-24 21:15:51,174 - DEBUG: ===============================================Begin Log===============================================
+2013-06-24 21:15:51,204 - DEBUG: 
+
+
+2013-06-24 21:15:51,206 - DEBUG: batIdx: 0
+2013-06-24 21:15:51,216 - DEBUG: numUnvisit: 6, self.numBaobei: 3
+2013-06-24 21:15:51,217 - DEBUG: self.randomVisit: [2, 4, 0]
+2013-06-24 21:15:52,848 - DEBUG: createBaobei visitIdx(0): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+
+2013-06-24 21:15:54,161 - DEBUG: createBaobei visitIdx(1): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+
+2013-06-24 21:15:58,805 - DEBUG: createBaobei visitIdx(2): http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
+
+2013-06-24 21:15:58,805 - DEBUG: baobeiSrcollBeg: 0
+2013-06-24 21:16:01,058 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 918402
+2013-06-24 21:16:07,697 - DEBUG: baobeiSrcollBeg: 1
+2013-06-24 21:16:22,704 - DEBUG: waitReadyState: True
+2013-06-24 21:16:22,716 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 656738
+2013-06-24 21:16:22,723 - ERROR: Traceback (most recent call last):
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 327, in zhubajie_2897106
+    hasUnvisit = view_3_baobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 270, in view_3_baobei
+    baobei.baobeiSrcollBeg()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 86, in baobeiSrcollBeg
+    mainIE.setForeground()
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 207, in setForeground
+    win32gui.SetForegroundWindow(self.getIEHandle())
+error: (0, 'SetForegroundWindow', 'No error message is available')
+
+2013-06-24 21:16:22,752 - DEBUG: len(ies): 5
+2013-06-24 21:16:22,755 - DEBUG: ie.LocationURL: file:///G:/WorkStation/zhubajie
+2013-06-24 21:16:22,759 - DEBUG: ie.LocationURL: about:blank
+2013-06-24 21:16:22,763 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+2013-06-24 21:16:22,765 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+2013-06-24 21:16:23,776 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+2013-06-24 21:16:23,779 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+2013-06-24 21:16:24,792 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
+2013-06-24 21:16:24,795 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
+2013-06-24 21:22:11,959 - DEBUG: ===============================================Begin Log===============================================
+2013-06-24 21:22:11,960 - DEBUG: 
+
+
+2013-06-24 21:22:11,960 - DEBUG: batIdx: 0
+2013-06-24 21:22:14,437 - DEBUG: numUnvisit: 6, self.numBaobei: 3
+2013-06-24 21:22:14,437 - DEBUG: self.randomVisit: [0, 2, 4]
+2013-06-24 21:22:16,345 - DEBUG: createBaobei visitIdx(0): http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
+
+2013-06-24 21:22:17,542 - DEBUG: createBaobei visitIdx(1): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+
+2013-06-24 21:22:19,009 - DEBUG: createBaobei visitIdx(2): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+
+2013-06-24 21:22:19,010 - DEBUG: baobeiSrcollBeg: 0
+2013-06-24 21:22:24,789 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 591380
+2013-06-24 21:22:30,822 - DEBUG: baobeiSrcollBeg: 1
+2013-06-24 21:22:30,864 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 1443782
+2013-06-24 21:22:36,045 - DEBUG: baobeiSrcollBeg: 2
+2013-06-24 21:22:36,069 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 21170096
+2013-06-24 21:22:41,217 - DEBUG: mainIE waitBusy before setForeground: 0
+2013-06-24 21:22:41,226 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 591380
+2013-06-24 21:22:41,318 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 591380
+2013-06-24 21:22:41,887 - DEBUG: openCurBaobei
+2013-06-24 21:22:43,519 - DEBUG: subIdx: 0, url: http://detail.tmall.com/item.htm?spm=a1z10.4.w3-18449998307.3.3bn4sU&id=17470118880&bucket_id=19&scene=taobao_shop&scene=taobao_shop
+2013-06-24 21:22:43,522 - DEBUG: come back to mainIE waitBusy before setForeground: 
+2013-06-24 21:22:43,526 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 591380
+2013-06-24 21:22:44,533 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 591380
+2013-06-24 21:22:45,542 - DEBUG: come back to mainIE waitBusy after setForeground: 
+2013-06-24 21:22:45,585 - DEBUG: self.mainIE.scrollToNode
+2013-06-24 21:22:46,792 - ERROR: Traceback (most recent call last):
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 339, in zhubajie_2897106
+    hasUnvisit = view_3_baobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 290, in view_3_baobei
+    baobei.openCurBaobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 126, in openCurBaobei
+    self.mainIE.scrollToNode(subNode)
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 253, in scrollToNode
+    if isNodeInScreen(node, self)==True:
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 91, in isNodeInScreen
+    clientHeight = ie.getClientHeight()
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 240, in getClientHeight
+    return self.ie.Document.documentElement.clientHeight
+  File "C:\Python27\lib\site-packages\win32com\client\dynamic.py", line 511, in __getattr__
+    ret = self._oleobj_.Invoke(retEntry.dispid,0,invoke_type,1)
+com_error: (-2147467262, '\xb2\xbb\xd6\xa7\xb3\xd6\xb4\xcb\xbd\xd3\xbf\xda', None, None)
+
+2013-06-24 21:22:46,881 - DEBUG: len(ies): 4
+2013-06-24 21:22:46,885 - DEBUG: ie.LocationURL: file:///G:/WorkStation/GitAutoVerify
+2013-06-24 21:22:46,888 - DEBUG: ie.LocationURL: about:blank
+2013-06-24 21:22:46,892 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+2013-06-24 21:22:46,894 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.4.KpoEeQ&id=17271840674&scene=taobao_shop
+2013-06-24 21:22:47,904 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+2013-06-24 21:22:47,907 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+2013-06-24 21:25:39,219 - DEBUG: ===============================================Begin Log===============================================
+2013-06-24 21:25:39,220 - DEBUG: 
+
+
+2013-06-24 21:25:39,220 - DEBUG: batIdx: 0
+2013-06-24 21:25:41,588 - DEBUG: numUnvisit: 6, self.numBaobei: 3
+2013-06-24 21:25:41,589 - DEBUG: self.randomVisit: [4, 3, 0]
+2013-06-24 21:25:43,571 - DEBUG: createBaobei visitIdx(0): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
+
+2013-06-24 21:25:44,812 - DEBUG: createBaobei visitIdx(1): http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.9.yj005q&id=17234868278&scene=taobao_shop
+
+2013-06-24 21:25:45,456 - DEBUG: createBaobei visitIdx(2): http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
+
+2013-06-24 21:25:45,457 - DEBUG: baobeiSrcollBeg: 0
+2013-06-24 21:25:53,117 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 656708
+2013-06-24 21:25:57,604 - DEBUG: baobeiSrcollBeg: 1
+2013-06-24 21:25:57,615 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 329426
+2013-06-24 21:26:01,851 - DEBUG: baobeiSrcollBeg: 2
+2013-06-24 21:26:01,868 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 394970
+2013-06-24 21:26:08,062 - DEBUG: mainIE waitBusy before setForeground: 0
+2013-06-24 21:26:08,086 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 656708
+2013-06-24 21:26:08,213 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 656708
+2013-06-24 21:26:08,711 - DEBUG: openCurBaobei
+2013-06-24 21:26:09,773 - DEBUG: subIdx: 0, url: http://detail.tmall.com/item.htm?id=20857340395
+2013-06-24 21:26:09,773 - DEBUG: come back to mainIE waitBusy before setForeground: 
+2013-06-24 21:26:09,779 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 656708
+2013-06-24 21:26:10,790 - DEBUG: type(self.ie.hwnd): <type 'int'>, self.ie.hwnd: 656708
+2013-06-24 21:26:11,796 - DEBUG: come back to mainIE waitBusy after setForeground: 
+2013-06-24 21:26:11,796 - DEBUG: self.mainIE.scrollToNode
+2013-06-24 21:26:26,102 - DEBUG: waitBusy: True
+2013-06-24 21:26:35,290 - DEBUG: self.createNewSubIE
+2013-06-24 21:26:36,263 - DEBUG: subIE.stayInSubPage
+2013-06-24 21:26:41,528 - ERROR: Traceback (most recent call last):
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 339, in zhubajie_2897106
+    hasUnvisit = view_3_baobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 290, in view_3_baobei
+    baobei.openCurBaobei()
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 139, in openCurBaobei
+    subIE.stayInSubPage(timeOut)
+  File "G:\WorkStation\GitAutoVerify\IEExplorer.py", line 269, in stayInSubPage
+    self.getWindow().scrollBy(0,delta)
+  File "C:\Python27\lib\site-packages\win32com\client\dynamic.py", line 192, in __call__
+    return self._get_good_object_(self._oleobj_.Invoke(*allArgs),self._olerepr_.defaultDispatchName,None)
+com_error: (-2147352567, '\xb7\xa2\xc9\xfa\xd2\xe2\xcd\xe2\xa1\xa3', (0, None, u'\u62d2\u7edd\u8bbf\u95ee\u3002\r\n', u'C:\\Windows\\System32\\mshtml.hlp', 0, -2147024891), None)
+
+2013-06-24 21:26:41,551 - DEBUG: len(ies): 4
+2013-06-24 21:26:41,555 - DEBUG: ie.LocationURL: file:///G:/WorkStation/GitAutoVerify
+2013-06-24 21:26:41,558 - DEBUG: ie.LocationURL: about:blank
+2013-06-24 21:26:41,561 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.9.yj005q&id=17234868278&scene=taobao_shop
+2013-06-24 21:26:41,562 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.9.yj005q&id=17234868278&scene=taobao_shop
+2013-06-24 21:26:42,572 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=
+2013-06-24 21:26:42,572 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?id=10000202729&spm=a230r.1.14.9.ff5tiJ&ad_id=&am_id=&cm_id=140105335569ed55e27b&pm_id=

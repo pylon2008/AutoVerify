@@ -1,10 +1,12 @@
 # coding=GBK
-import win32com.client, win32gui, win32api
+import win32gui, win32api
+import win32com.client
 import time, datetime, traceback, logging, pywintypes
 
 # 获取屏幕的宽、高
 ##width = win32api.GetSystemMetrics(win32con.SM_CXSCREEN)
 ##height = win32api.GetSystemMetrics(win32con.SM_CYSCREEN)
+##import ctypes
 ##ctypes.windll.user32.GetWindowTextLengthW
 
 IE_INTERVAL_TIME_CLOSE = 1
@@ -120,7 +122,6 @@ class IEExplorer(object):
     def __init__(self):
         self.ie = None
         self.oldURL = ""
-        self.PageTimeOut = 10.0
         self.timeBegOp = None                   # 开始操作宝贝的起点时间，从开始滚动开始
 
     def newIE(self, url):  
@@ -207,7 +208,7 @@ class IEExplorer(object):
     def resizeMax(self):
         WM_SYSCOMMAND = int('112', 16)
         SC_MINIMIZE = int('F020', 16)
-        SC_MAXIMIZE = int('F030', 16)
+        SC_MAXIMIZE = int('F030', 16)        
         win32api.SendMessage(self.getIEHandle(), WM_SYSCOMMAND, SC_MAXIMIZE, 0)
     
     def getBody(self):
