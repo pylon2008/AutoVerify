@@ -369,3 +369,20 @@ AttributeError: <unknown>.LocationURL
 2013-06-24 23:08:39,101 - DEBUG: ie.LocationURL: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
 2013-06-24 23:08:39,101 - DEBUG: closeAllRunningIE: http://detail.tmall.com/item.htm?spm=a220o.1000855.w3-18405562880.13.pBqNrr&id=20371475288&bucket_id=19&scene=taobao_shop
 2013-06-24 23:08:40,881 - DEBUG: change proxy time: 0
+2013-06-25 20:24:14,119 - DEBUG: ===============================================Begin Log===============================================
+2013-06-25 20:24:14,151 - DEBUG: 
+
+
+2013-06-25 20:24:14,151 - DEBUG: batIdx: 0
+2013-06-25 20:26:27,848 - DEBUG: ===============================================Begin Log===============================================
+2013-06-25 20:26:27,848 - DEBUG: 
+
+
+2013-06-25 20:26:27,848 - DEBUG: batIdx: 0
+2013-06-25 20:26:56,983 - DEBUG: change proxy time: 162
+2013-06-25 20:27:06,999 - ERROR: Traceback (most recent call last):
+  File "G:\WorkStation\GitAutoVerify\TaobaoViewer.py", line 369, in zhubajie_2897106
+    time.sleep(sleepTime)
+KeyboardInterrupt
+
+2013-06-25 20:27:11,398 - DEBUG: change proxy time: 43

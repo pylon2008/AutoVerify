@@ -332,7 +332,7 @@ def zhubajie_2897106():
             url = "about:blank"
             nullIE = IEExplorer()
             nullIE.newIE(url)
-            nullIE.setVisible(1)
+            nullIE.setVisible(0)
         except:
             logging.error("¿Õ°×Ò³´ò¿ªÒì³£")
             traceStr = traceback.format_exc()
@@ -345,6 +345,16 @@ def zhubajie_2897106():
             traceStr = traceback.format_exc()
             logging.error(traceStr)
             closeAllRunningIE()
+
+        #uninit ev
+        try:
+            print "quit"
+            if nullIE!=None:
+                nullIE.quit()
+        except:
+            logging.error("¿Õ°×Ò³¹Ø±ÕÒì³£")
+            traceStr = traceback.format_exc()
+            logging.error(traceStr)
 
         # change IP
         try:
@@ -362,23 +372,17 @@ def zhubajie_2897106():
             logging.error(traceStr)
             ieProxy.clearProxy()
 
-        #uninit ev
-        try:
-            print "quit"
-            if nullIE!=None:
-                nullIE.quit()
-        except:
-            logging.error("¿Õ°×Ò³¹Ø±ÕÒì³£")
-            traceStr = traceback.format_exc()
-            logging.error(traceStr)
-
         # next view
         batIdx += 1
+
 
 
     
 if __name__=='__main__':
     zhubajie_2897106()
+##    aa = getRandomIntSet(5)
+##    print len(aa)
+##    print aa
 
 
 # TODO

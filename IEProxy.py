@@ -1,7 +1,18 @@
 #coding=GBK
-import urllib2
+import urllib2, random
 import win32api, win32inet, datetime, logging
 import win32con, win32file, random, traceback
+
+def getRandomIntSet(maxVal):
+    randomSet = []
+    for i in range(maxVal):
+        isIn = False
+        while isIn==False:
+            ii = random.randint(0, maxVal-1)
+            if ii not in randomSet:
+                randomSet.append(ii)
+                isIn = True
+    return randomSet
 
 ##g_OutDataTime.year = 2013
 ##g_OutDataTime.month = 5
@@ -131,9 +142,15 @@ class IEProxy(object):
 
     def writeProxy(self):
         tmpFile = file("ptmp.txt", "w+")
-        for proxy in self.proxySet:
-            line = proxy[0] + " " + str(proxy[1]) + "\r\n"
-            tmpFile.write(line)
+        numP = len(self.proxySet)
+        randomInt = getRandomIntSet( numP )
+        for idx in randomInt:
+            if idx>=0 and idx<numP:
+                proxy = self.proxySet[idx]
+                line = proxy[0] + " " + str(proxy[1]) + "\r\n"
+                tmpFile.write(line)
+            else:
+                logging.error("proxy random error: " + str(idx))
         tmpFile.close()
         uFile = self.proxyFile
         win32file.DeleteFile(uFile)
