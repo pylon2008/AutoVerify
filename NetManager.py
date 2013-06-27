@@ -3,6 +3,26 @@ import os
 import urllib2
 import socket 
 
+
+##netsh interface show interface
+##ipconfig /all
+##HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Network\{4D36E972-E325-11CE-BFC1-08002BE10318}
+##rasapi32.dll 
+##
+##//////////////////////////////////////////////////////////////////////////
+##import os
+##
+##myip = os.popen("ipconfig").read()
+##
+##print myip
+##///////////////////////////////////////////////////////////////////////////////////
+##import socket
+##ip_list=socket.getaddrinfo(socket.gethostname(),None)
+##for i in range(len(ip_list)):
+##        print (ip_list[i][4][0])
+##///////////////////////////////////////////////////////////////////////////////////////
+
+
 # 获取IP地址，目前只支持4
 class IPTracker(object):
     def __init__(self):
