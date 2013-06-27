@@ -1,7 +1,9 @@
 # coding=GBK
 import os
 import urllib2
-import socket 
+import socket
+import time
+from Config import *
 
 
 ##netsh interface show interface
@@ -112,6 +114,13 @@ class EthernetAdapter(object):
     def getAllEthernetAdapterName(self):
         ipconfigStr = os.popen("ipconfig").read()
         nameKeyBeg = "Ethernet adapter "
+        self.getAllEthernetAdapterNameKeyword(ipconfigStr, nameKeyBeg)
+        nameKeyBeg = "以太网适配器 "
+        self.getAllEthernetAdapterNameKeyword(ipconfigStr, nameKeyBeg)
+        nameKeyBeg = "无线局域网适配器 "
+        self.getAllEthernetAdapterNameKeyword(ipconfigStr, nameKeyBeg)
+
+    def getAllEthernetAdapterNameKeyword(self, ipconfigStr, nameKeyBeg):
         lenNameKeyBeg = len(nameKeyBeg)
         nameKeyEnd = ":"
         while True:
@@ -135,17 +144,21 @@ class EthernetAdapter(object):
         return strName
 
 # 拨号
+# EthernetDialor(u"拨号连接", u"ctnet@mycdma.cn", u"vnet.mobi")
 class EthernetDialor(object):
-    def __init__(self, ethernetName, userName, password):
+    def __init__(self):
+        self.rasdialName = "rasdial"
+
+    def setEthernetInfo(self, ethernetName, userName, password):
         self.ethernetName = ethernetName
         self.userName = userName
-        self.password = password
-        self.rasdialName = "rasdial"
+        self.password = password        
 
     def check(self):
         cmd = self.rasdialName
         asciiCmd = cmd.encode("gbk")
         dialResult = os.popen(asciiCmd).read()
+        print "check:\r\n", dialResult
 
     def connect(self):
         cmd = self.rasdialName + u" " \
@@ -154,23 +167,43 @@ class EthernetDialor(object):
               + "\"" + self.rasdialName + u"\""
         asciiCmd = cmd.encode("gbk")
         dialResult = os.popen(asciiCmd).read()
+        return dialResult
 
     def disconnect(self):
         cmd = self.rasdialName + u" " \
               + u"/DISCONNECT" + u" "
         asciiCmd = cmd.encode("gbk")
         dialResult = os.popen(asciiCmd).read()
-    
-        
-if __name__== '__main__':
-    allNet = EthernetAdapter()
-    print allNet.getEthernetAdapterName(0)
-    print allNet.getEthernetAdapterName(1)
-    print allNet.getEthernetAdapterName(2)
-    dial = EthernetDialor(allNet.getEthernetAdapterName(0), u"pyl", u"pyl")
-    dial.check()
-    dial.connect()
-    dial.disconnect()
+        return dialResult
 
-    ipTracker = IPTracker()
-    print ipTracker.getEthernetOuterIP()
+
+class NetManager(object):
+    def __init__(self):
+        self.ipTracker = IPTracker()
+        self.adapter = EthernetAdapter()
+        self.dialor = EthernetDialor()
+
+    def setEthernetInfo(self, ethernetName, userName, password):
+        self.dialor.setEthernetInfo(ethernetName, userName, password)
+
+    def changeIP(self):
+        print "Current IP: ", self.ipTracker.getEthernetOuterIP()
+        disConResult = self.dialor.disconnect()
+        print "disConResult:\r\n", disConResult
+        time.sleep(5)
+        conResult = self.dialor.connect()
+        print "conResult:\r\n", conResult
+        print " "
+        time.sleep(15)
+
+
+if __name__== '__main__':
+    netManger = NetManager()
+    config = ConfigIni("Config.ini")
+    
+    ethernet = config.getKeyValue(u"网络连接名称")
+    user = config.getKeyValue(u"用户名")
+    password = config.getKeyValue(u"密码")
+    netManger.setEthernetInfo(ethernet, user, password)
+    for i in range(10):
+        netManger.changeIP()
