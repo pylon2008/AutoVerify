@@ -4,6 +4,7 @@ import win32api,win32gui,win32con, traceback
 import random
 from IEExplorer import *
 from IEProxy import *
+import xlrd, xlwt
 
 NUM_BAT_TAOBAO_BAOBEI_VIEW = 3                  # 一次浏览宝贝的数量
 NUM_SUB_PAGE_MIN = 2                            # 子页面数量最小值
@@ -148,17 +149,7 @@ class TaobaoViewer(object):
         self.baobeiSet = []                                 # 配置文件中所有的宝贝集合
         self.numBaobei = NUM_BAT_TAOBAO_BAOBEI_VIEW         # 一次打开的宝贝的数量
 
-        # 读取所有宝贝
-        self.file = file('UrlConfig.txt', 'r')
-        while True:
-            line = self.file.readline()
-            if len(line)==0:
-                break
-            rr = line.split(' ')
-            numVisit = int(rr[0])
-            url = rr[1]
-            self.baobeiSet.append( [numVisit,url] )
-        self.file.close()
+        self.readUrlConfig()
 
         numUnvisit = self.numAllUnvisit()
         if self.numBaobei > numUnvisit:
@@ -219,16 +210,42 @@ class TaobaoViewer(object):
     def getBaobei(self, visitIdx):
         return self.mainIE[visitIdx]
 
+    def readUrlConfig(self):
+        # 读取所有宝贝
+        try:
+            filePath = "UrlConfig.xls"
+            wb = xlrd.open_workbook(filePath)
+            sheet = wb.sheet_by_index(0)
+            for row_index in range(sheet.nrows):
+                numVisit = sheet.cell(row_index,0).value
+                numVisit = (int)(numVisit)
+                url = sheet.cell(row_index,1).value
+                self.baobeiSet.append( [numVisit,url] )
+        except:
+            logging.error("UrlConfig.xls read error!")
+            traceStr = traceback.format_exc()
+            logging.error(traceStr)
+           
     def writeUrlConfig(self):
-        newFile = file("tmp.txt", "w+")
-        for baobei in self.baobeiSet:
-            line = str(baobei[0]) + " " + baobei[1]
-            newFile.write(line)
-        newFile.close()
-        win32file.DeleteFile(u"UrlConfig.txt")
-        win32file.CopyFile(u"tmp.txt", u"UrlConfig.txt", False)
-        #win32file.MoveFile(u"tmp.txt", u"UrlConfig.txt")
-         
+        try:
+            wb = xlwt.Workbook()
+            sheet = wb.add_sheet('sheet 1')
+            for row_index in range(len(self.baobeiSet)):
+                baobei = self.baobeiSet[row_index]
+                num = baobei[0]-1
+                url = baobei[1]
+                sheet.write(row_index,0,num)
+                sheet.write(row_index,1,url)
+            sheet.col(1).width = 3333*8
+            filePath = "UrlConfig_backup.xls"
+            wb.save(filePath)
+            win32file.DeleteFile(u"UrlConfig.xls")
+            win32file.CopyFile(u"UrlConfig_backup.xls", u"UrlConfig.xls", False)
+        except:
+            logging.error("UrlConfig_backup.xls write error!")
+            traceStr = traceback.format_exc()
+            logging.error(traceStr)
+       
     def closeAllIE(self):
         numVisitBaobei = self.numVisit()
         for mainIdx in range(numVisitBaobei):
@@ -254,7 +271,7 @@ class TaobaoViewer(object):
 
 
 def view_3_baobei():
-    viewer = TaobaoViewer() 
+    viewer = TaobaoViewer()
 
     # 打开3个宝贝界面
     numVisitBaobei = viewer.numVisit()
@@ -379,12 +396,17 @@ def zhubajie_2897106():
 
     
 if __name__=='__main__':
-    zhubajie_2897106()
+##    zhubajie_2897106()
 ##    aa = getRandomIntSet(5)
 ##    print len(aa)
 ##    print aa
 
 
-# TODO
-#1.异常处理可再细化一下，哪个页面有问题，就关闭哪个页面
-#2.找新代理点
+
+
+
+
+
+    viewer = TaobaoViewer()
+    viewer.writeUrlConfig()
+
