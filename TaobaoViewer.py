@@ -4,6 +4,7 @@ import win32api,win32gui,win32con, traceback
 import random
 from IEExplorer import *
 from IEProxy import *
+from NetManager import *
 import xlrd, xlwt
 
 NUM_BAT_TAOBAO_BAOBEI_VIEW = 3                  # 一次浏览宝贝的数量
@@ -331,7 +332,21 @@ def initLogging():
 
 def zhubajie_2897106():
     initLogging()
-    ieProxy = IEProxy("proxy.txt")
+    netManger = None
+    
+    # init net manager
+    try:
+        netManger = NetManager()
+        config = ConfigIni("Config.ini")  
+        ethernet = config.getKeyValue(u"网络连接名称")
+        user = config.getKeyValue(u"用户名")
+        password = config.getKeyValue(u"密码")
+        netManger.setEthernetInfo(ethernet, user, password)
+    except:
+        logging.error("初始化失败，请检查配置文件：Config.ini")
+        traceStr = traceback.format_exc()
+        logging.error(traceStr)
+
 
     hasUnvisit = True
     batIdx = 0
@@ -343,13 +358,9 @@ def zhubajie_2897106():
             logging.error("isOutOfData" + str(datetime.datetime.now()))
             time.sleep(24*60*60)
 
-        nullIE = None
         #init ev
         try:
-            url = "about:blank"
-            nullIE = IEExplorer()
-            nullIE.newIE(url)
-            nullIE.setVisible(0)
+            os.startfile("C:\\Program Files\\Internet Explorer\\iexplore.exe")
         except:
             logging.error("空白页打开异常")
             traceStr = traceback.format_exc()
@@ -363,31 +374,12 @@ def zhubajie_2897106():
             logging.error(traceStr)
             closeAllRunningIE()
 
-        #uninit ev
-        try:
-            print "quit"
-            if nullIE!=None:
-                nullIE.quit()
-        except:
-            logging.error("空白页关闭异常")
-            traceStr = traceback.format_exc()
-            logging.error(traceStr)
-
         # change IP
         try:
-            timeProxyBeg = datetime.datetime.now()
-            ieProxy.changeProxy()
-            timeProxyEnd = datetime.datetime.now()
-            deltaTime = (timeProxyEnd - timeProxyBeg).seconds
-            logging.debug("change proxy time: %d", deltaTime)
-            sleepTime = TIME_PROXY_CHANGE - deltaTime
-            if sleepTime < 10:
-                sleepTime = 10
-            time.sleep(sleepTime)
+            netManger.changeIP()
         except:
             traceStr = traceback.format_exc()
             logging.error(traceStr)
-            ieProxy.clearProxy()
 
         # next view
         batIdx += 1
@@ -396,6 +388,7 @@ def zhubajie_2897106():
 
     
 if __name__=='__main__':
+    zhubajie_2897106()
 ##    zhubajie_2897106()
 ##    aa = getRandomIntSet(5)
 ##    print len(aa)
@@ -407,6 +400,6 @@ if __name__=='__main__':
 
 
 
-    viewer = TaobaoViewer()
-    viewer.writeUrlConfig()
+##    viewer = TaobaoViewer()
+##    viewer.writeUrlConfig()
 

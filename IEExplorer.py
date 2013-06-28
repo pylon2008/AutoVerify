@@ -28,7 +28,7 @@ def closeAllRunningIE():
         logging.debug("len(ies): %d", len(ies))
         for ie in ies:
             logging.debug("ie.LocationURL: %s", ie.LocationURL)
-            if u"http://" in ie.LocationURL:
+            if u"http://" in ie.LocationURL or u"about:blank" in ie.LocationURL:
                 logging.debug("closeAllRunningIE: %s", ie.LocationURL)
                 while ie.Busy==True:
                     ie.stop()

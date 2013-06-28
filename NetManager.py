@@ -2,9 +2,11 @@
 import os
 import urllib2
 import socket
-import time
+import time, logging
 from Config import *
 
+TIME_AFTER_DISCONNECT = 5
+TIME_AFTER_CONNECT = 15
 
 ##netsh interface show interface
 ##ipconfig /all
@@ -32,6 +34,8 @@ class IPTracker(object):
         
     # 获取外网IP
     def getEthernetOuterIP(self):
+        return self.getEthernetInnerIP()
+    
         ip = None
         ip = self.getIpBliao()
         if ip!=None:
@@ -47,6 +51,7 @@ class IPTracker(object):
 
     def getEthernetInnerIP(self):
         ip = socket.gethostbyname(socket.gethostname())
+        ip = ip.decode("GBK")
         return ip
 
     # 获取电脑上所有的IP,适用于多个连接的机器
@@ -187,14 +192,20 @@ class NetManager(object):
         self.dialor.setEthernetInfo(ethernetName, userName, password)
 
     def changeIP(self):
-        print "Current IP: ", self.ipTracker.getEthernetOuterIP()
+        oldIP = self.ipTracker.getEthernetOuterIP()
         disConResult = self.dialor.disconnect()
-        print "disConResult:\r\n", disConResult
-        time.sleep(5)
+        disConResult = "disConResult:\r\n" + disConResult + "\r\n"
+        disConResult = disConResult.decode("GBK")
+        time.sleep(TIME_AFTER_DISCONNECT)
         conResult = self.dialor.connect()
-        print "conResult:\r\n", conResult
-        print " "
-        time.sleep(15)
+        conResult = "conResult:\r\n" + conResult + " "
+        conResult = conResult.decode("GBK")
+        time.sleep(TIME_AFTER_CONNECT)
+        newIP = self.ipTracker.getEthernetOuterIP()
+        debugInfo = disConResult + conResult + u"\r\nold ip: " + oldIP \
+                    + u"; new ip: " + newIP
+        logging.debug(debugInfo)
+        print debugInfo
 
 
 if __name__== '__main__':
@@ -207,3 +218,4 @@ if __name__== '__main__':
     netManger.setEthernetInfo(ethernet, user, password)
     for i in range(10):
         netManger.changeIP()
+        break
