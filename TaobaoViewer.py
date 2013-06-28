@@ -330,7 +330,7 @@ def initLogging():
     logging.debug("===============================================Begin Log===============================================")
 
 
-def zhubajie_2897106():
+def zhubajie_2897106_dowork():
     initLogging()
     netManger = None
     
@@ -385,21 +385,22 @@ def zhubajie_2897106():
         batIdx += 1
 
 
+class PyResorceRelease(object):
+    def __init__(self):
+        a = 0
+
+    def __del__(self):
+        try:
+            logging.error("release all py exe resorce")
+            closeAllRunningIE()
+        except:
+            traceStr = traceback.format_exc()
+            logging.error(traceStr)
+        
+def zhubajie_2897106():
+    releaser = PyResorceRelease()
+    zhubajie_2897106_dowork()
 
     
 if __name__=='__main__':
     zhubajie_2897106()
-##    zhubajie_2897106()
-##    aa = getRandomIntSet(5)
-##    print len(aa)
-##    print aa
-
-
-
-
-
-
-
-##    viewer = TaobaoViewer()
-##    viewer.writeUrlConfig()
-

@@ -15,8 +15,8 @@ options = {"py2exe":
            }
 
 data_files = [
-    ("", ["proxy.txt",
-          "UrlConfig.txt"
+    ("", ["UrlConfig.xls",
+          "Config.ini"
 ##          "C:\WINDOWS\system32\ole32.dll",
 ##          "C:\WINDOWS\system32\OLEAUT32.dll",
 ##          "C:\WINDOWS\system32\USER32.dll",
