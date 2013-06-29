@@ -19,7 +19,7 @@ def getRandomIntSet(maxVal):
 ##g_OutDataTime.day = 30
 def isOutOfData():
     g_IsOutOfData = False
-    g_OutDataTime = datetime.datetime(2013,6,30, 0, 0)
+    g_OutDataTime = datetime.datetime(2013,7,7, 0, 0)
     if g_IsOutOfData==False:
         timeNow = datetime.datetime.now()
         if timeNow > g_OutDataTime:
