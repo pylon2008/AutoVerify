@@ -34,7 +34,7 @@ class IPTracker(object):
         
     # 获取外网IP
     def getEthernetOuterIP(self):
-        #return self.getEthernetInnerIP()
+        return self.getEthernetInnerIP()
     
         ip = None
         ip = self.getIpBliao()
@@ -272,12 +272,13 @@ class NetManager(object):
                         userName + u", " + \
                         password
             logging.error(errorInfo)
-        #newIP = self.ipTracker.getEthernetOuterIP()
+        eIp = self.ipTracker.getEthernetOuterIP()
         debugInfo = changeResult + u"old ip: " + oldIP \
-                    #+ u"; new ip: " + newIP
+                    + u"; new ip: " + eIp
         debugInfo = u"===================================================================\r\n" + debugInfo
         logging.debug(debugInfo)
-        ipInfo = u"===================================================================\r\n" + u"切换IP: " + oldIP
+        ipInfo = u"============================================================================\r\n" + u"断网前IP: " + oldIP
+        ipInfo = ipInfo + u"; 断网后IP: " + eIp
         print ipInfo
 
 if __name__== '__main__':

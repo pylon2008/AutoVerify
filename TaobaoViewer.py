@@ -370,6 +370,7 @@ def zhubajie_2897106_dowork():
         # view baobei
         try:
             hasUnvisit = view_3_baobei()
+            closeAllRunningIE()
         except:
             traceStr = traceback.format_exc()
             logging.error(traceStr)
