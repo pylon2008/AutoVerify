@@ -5,8 +5,8 @@ import socket, base64
 import time, logging
 from Config import *
 
-TIME_AFTER_DISCONNECT = 5
-TIME_AFTER_CONNECT = 15
+TIME_AFTER_DISCONNECT = 27
+TIME_AFTER_CONNECT = 3
 
 ##netsh interface show interface
 ##ipconfig /all
