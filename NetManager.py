@@ -1,7 +1,7 @@
 # coding=GBK
 import os
 import urllib2
-import socket
+import socket, base64
 import time, logging
 from Config import *
 
@@ -34,7 +34,7 @@ class IPTracker(object):
         
     # 获取外网IP
     def getEthernetOuterIP(self):
-        return self.getEthernetInnerIP()
+        #return self.getEthernetInnerIP()
     
         ip = None
         ip = self.getIpBliao()
@@ -74,7 +74,7 @@ class IPTracker(object):
         return ip
             
     def getIpBliao(self):
-        url = "http://www.bliao.com/ip.phtml"
+        url = u"http://www.bliao.com/ip.phtml"
         date = urllib2.urlopen(url).read()
         ip = date.decode("GBK")
         return ip
@@ -168,8 +168,8 @@ class EthernetDialor(object):
     def connect(self):
         cmd = self.rasdialName + u" " \
               + "\"" + self.ethernetName + u"\" " \
-              + "\"" + self.userName + u"\" " \
-              + "\"" + self.rasdialName + u"\""
+              + self.userName + u" " \
+              + self.password
         asciiCmd = cmd.encode("gbk")
         dialResult = os.popen(asciiCmd).read()
         return dialResult
@@ -182,17 +182,64 @@ class EthernetDialor(object):
         return dialResult
 
 
+# TPLink重启换IP
+class TPLinkReset(object):
+    def __self__(self):
+        self.url = ""
+        self.user = ""
+        self.password = ""
+
+    def setInfo(self, url, user, password):
+        self.url = url
+        self.user = user
+        self.password = password
+
+    def reset(self):
+        url = "http://" + self.url + "/userRpm/SysRebootRpm.htm"
+        # ?Reboot=%D6%D8%C6%F4%C2%B7%D3%C9%C6%F7
+        # ?Reboot=重启路由器
+        urlReboot = url + "?Reboot=%D6%D8%C6%F4%C2%B7%D3%C9%C6%F7"
+        authInfo = self.user + ":" + self.password
+        
+        auth = 'Basic ' + base64.b64encode(authInfo)
+        heads = { 'Referer':url, 'Authorization':auth}
+        # 请求重启路由器
+        request = urllib2.Request(urlReboot, None, heads)
+        response = urllib2.urlopen(request)
+        date = response.read()
+        time.sleep(60)
+
+
+# 网络连接管理
 class NetManager(object):
     def __init__(self):
         self.ipTracker = IPTracker()
         self.adapter = EthernetAdapter()
         self.dialor = EthernetDialor()
+        self.tpLink = TPLinkReset()
+        self.netType = None
+        self.timeout = 60
 
-    def setEthernetInfo(self, ethernetName, userName, password):
-        self.dialor.setEthernetInfo(ethernetName, userName, password)
+    def setEthernetInfo(self, netType, ethernetName, userName, password, timeout = 60):
+        self.netType = netType
+        self.timeout = timeout 
+        if self.netType == u"1":
+            self.tpLink.setInfo(ethernetName, userName, password)
+        elif self.netType == u"2":
+            self.dialor.setEthernetInfo(ethernetName, userName, password)
+        elif self.netType == u"3":
+            self.dialor.setEthernetInfo(ethernetName, userName, password)
+        elif self.netType == u"4":
+            self.dialor.setEthernetInfo(ethernetName, userName, password)
+        else:
+            errorInfo = u"Not support the net type: " + \
+                        netType + u", " + \
+                        ethernetName + u", " + \
+                        userName + u", " + \
+                        password
+            logging.error(errorInfo)
 
-    def changeIP(self):
-        oldIP = self.ipTracker.getEthernetOuterIP()
+    def changeIPDial(self):
         disConResult = self.dialor.disconnect()
         disConResult = "disConResult:\r\n" + disConResult + "\r\n"
         disConResult = disConResult.decode("GBK")
@@ -201,21 +248,47 @@ class NetManager(object):
         conResult = "conResult:\r\n" + conResult + " "
         conResult = conResult.decode("GBK")
         time.sleep(TIME_AFTER_CONNECT)
-        newIP = self.ipTracker.getEthernetOuterIP()
-        debugInfo = disConResult + conResult + u"\r\nold ip: " + oldIP \
-                    + u"; new ip: " + newIP
-        logging.debug(debugInfo)
-        print debugInfo
+        debugInfo = disConResult + conResult
+        return debugInfo
 
+    def changeIPLink(self):
+        self.tpLink.reset()
+        return u""
+
+    def changeIP(self):
+        oldIP = self.ipTracker.getEthernetOuterIP()
+        if self.netType == u"1":
+            changeResult = self.changeIPLink()
+        elif self.netType == u"2":
+            changeResult = self.changeIPDial()
+        elif self.netType == u"3":
+            changeResult = self.changeIPDial()
+        elif self.netType == u"4":
+            changeResult = self.changeIPDial()
+        else:
+            errorInfo = u"Not support the net type: " + \
+                        netType + u", " + \
+                        ethernetName + u", " + \
+                        userName + u", " + \
+                        password
+            logging.error(errorInfo)
+        #newIP = self.ipTracker.getEthernetOuterIP()
+        debugInfo = changeResult + u"old ip: " + oldIP \
+                    #+ u"; new ip: " + newIP
+        debugInfo = u"===================================================================\r\n" + debugInfo
+        logging.debug(debugInfo)
+        ipInfo = u"===================================================================\r\n" + u"切换IP: " + oldIP
+        print ipInfo
 
 if __name__== '__main__':
     netManger = NetManager()
     config = ConfigIni("Config.ini")
-    
+
+    netType = config.getKeyValue(u"网络连接类型")
     ethernet = config.getKeyValue(u"网络连接名称")
     user = config.getKeyValue(u"用户名")
     password = config.getKeyValue(u"密码")
-    netManger.setEthernetInfo(ethernet, user, password)
+    netManger.setEthernetInfo(netType, ethernet, user, password)
     for i in range(10):
         netManger.changeIP()
-        break
+        #break

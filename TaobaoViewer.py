@@ -337,11 +337,12 @@ def zhubajie_2897106_dowork():
     # init net manager
     try:
         netManger = NetManager()
-        config = ConfigIni("Config.ini")  
+        config = ConfigIni("Config.ini")
+        netType = config.getKeyValue(u"网络连接类型")
         ethernet = config.getKeyValue(u"网络连接名称")
         user = config.getKeyValue(u"用户名")
         password = config.getKeyValue(u"密码")
-        netManger.setEthernetInfo(ethernet, user, password)
+        netManger.setEthernetInfo(netType, ethernet, user, password)
     except:
         logging.error("初始化失败，请检查配置文件：Config.ini")
         traceStr = traceback.format_exc()

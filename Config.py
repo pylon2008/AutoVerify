@@ -4,6 +4,7 @@ class ConfigIni(object):
     def __init__(self, iniPath):
         self.path = iniPath
         self.values = {}
+        self.comments = []
         self.readIniFile()
 
     def readIniFile(self):
@@ -11,11 +12,14 @@ class ConfigIni(object):
         lines = f.readlines()
         for line in lines:
             line = line.decode("gbk")
-            idx = line.find(u"=")
-            if idx!=-1:
-                key = line[0:idx]
-                value = line[idx+1:-1]
-                self.values[key] = value
+            if line[0] == u'#':
+                self.comments.append(line)
+            else:
+                idx = line.find(u"=")
+                if idx!=-1:
+                    key = line[0:idx]
+                    value = line[idx+1:-1]
+                    self.values[key] = value
         f.close()
 
     def getKeyValue(self, key):
