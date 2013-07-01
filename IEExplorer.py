@@ -27,9 +27,10 @@ def closeAllRunningIE():
         ies = getAllRunningIE()
         logging.debug("len(ies): %d", len(ies))
         for ie in ies:
-            logging.debug("ie.LocationURL: %s", ie.LocationURL)
-            if u"http://" in ie.LocationURL or u"about:blank" in ie.LocationURL:
-                logging.debug("closeAllRunningIE: %s", ie.LocationURL)
+            url = ie.LocationURL
+            logging.debug("ie.LocationURL: %s", url)
+            if (u"http://" in url) or (u"about:blank" in url):
+                logging.debug("closeAllRunningIE: %s", url)
                 while ie.Busy==True:
                     ie.stop()
                     time.sleep(0.1)
@@ -242,6 +243,9 @@ class IEExplorer(object):
         scrollDirection = getScrollDirection(node, self)
         scrollDelta = [20,30,40,50,60,70]
         isIn = False
+        timeBeg = datetime.datetime.now()
+
+        oldClient = node.getBoundingClientRect()
         while isIn==False:
             for delta in scrollDelta:
                 while self.waitBusy(IE_TIME_OUT_SCROLL)==True:
@@ -253,6 +257,18 @@ class IEExplorer(object):
                     isIn = True
                     break
             time.sleep(IE_INTERVAL_TIME_SACROLL)
+            timeEnd = datetime.datetime.now()
+            deltaTime = (timeEnd-timeBeg).seconds
+            newClient = node.getBoundingClientRect()
+            deltaMove = newClient.top-oldClient.top
+            if deltaMove<0:
+                deltaMove = -deltaMove
+            if (deltaTime >= 30) or (deltaMove<10):
+                isIn = True
+                break
+            logging.debug("deltaMove: " + str(deltaMove))
+            logging.debug("deltaTime: " + str(deltaTime))
+            oldClient = newClient
 
     def stayInSubPage(self, timeOut):
         scrollDelta = [20,30,40,50,60,70]

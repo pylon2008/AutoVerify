@@ -257,6 +257,7 @@ class NetManager(object):
 
     def changeIP(self):
         oldIP = self.ipTracker.getEthernetOuterIP()
+        logging.debug(self.netType)
         if self.netType == u"1":
             changeResult = self.changeIPLink()
         elif self.netType == u"2":

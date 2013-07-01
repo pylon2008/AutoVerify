@@ -1,4 +1,5 @@
 #coding = GBK
+import logging
 
 class ConfigIni(object):
     def __init__(self, iniPath):
@@ -19,6 +20,7 @@ class ConfigIni(object):
                 if idx!=-1:
                     key = line[0:idx]
                     value = line[idx+1:-1]
+                    logging.debug(key+u":"+value)
                     self.values[key] = value
         f.close()
 

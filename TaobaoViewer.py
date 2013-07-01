@@ -1,6 +1,6 @@
 # coding=GBK
 import time, os, win32inet, win32file, logging
-import win32api,win32gui,win32con, traceback
+import win32api,win32gui,win32con, traceback, socket
 import random
 from IEExplorer import *
 from IEProxy import *
@@ -328,6 +328,7 @@ def initLogging():
     curTime = datetime.datetime.now
     strTime = str(curTime)
     logging.debug("===============================================Begin Log===============================================")
+    logging.debug( socket.gethostname() )
 
 
 def zhubajie_2897106_dowork():
@@ -347,7 +348,6 @@ def zhubajie_2897106_dowork():
         logging.error("初始化失败，请检查配置文件：Config.ini")
         traceStr = traceback.format_exc()
         logging.error(traceStr)
-
 
     hasUnvisit = True
     batIdx = 0
