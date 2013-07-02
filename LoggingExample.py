@@ -114,17 +114,20 @@ def showmessage(mail):
     else:
         type=mail.get_content_charset()
         print "type: ", type
+        print "mail.get_content_maintype(): ", mail.get_content_maintype()
         if type==None:
             print mail.get_payload()
         else:
             try:
-                print unicode(mail.get_payload(),type)
+                payload = mail.get_payload(decode = True)
+                if isinstance(payload, basestring):
+                    print "payload: ", payload
             except UnicodeDecodeError:
                 print mail
 
 def receMail():
-    host = 'pop.sina.com'  
-    username = '@sina.com'  
+    host = 'pop.sina.cn'  
+    username = '@sina.cn'  
     password = ''  
       
     pop_conn = poplib.POP3(host)   
@@ -141,13 +144,15 @@ def receMail():
     for msg in messages:
         allMsg = '\n'.join(msg[1])
         mail = email.message_from_string(allMsg)
+        print "mail================================="
+        subject = email.Header.decode_header(mail['subject'])[0][0]
+        subcode = email.Header.decode_header(mail['subject'])[0][1]
+        subStr = subject
+        if subcode != None:
+            subStr = unicode(subject,subcode)
+        print "Subject: ", subStr
+        print "Content-Transfer-Encoding: ", mail['Content-Transfer-Encoding']
         showmessage(mail)
-##        print "mail================================="
-##        subject = email.Header.decode_header(mail['subject'])[0][0]
-##        subcode = email.Header.decode_header(mail['subject'])[0][1]
-##        subStr = unicode(subject,subcode) 
-##
-##        print "Subject: ", subStr
 
     pop_conn.quit()
 
